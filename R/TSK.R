@@ -5,7 +5,6 @@
 #' give categorical response probabilities. 
 #' 
 #' @param n A sample size as an interger.
-#' @param ncat The number of categorical response. For example, a 5-point Likert scale item has a value of 5 for the variable ncat.  
 #' @param res_prob A vector of categorical response probabilities. 
 #' @return TSK will return threshold values and corresponding response probabilities and cumulative probabilities. 
 #'         
@@ -17,7 +16,7 @@
 #' res3<-50/120
 #' res4<-50/120
 #' res.prop<-c(res1, res2, res3, res4)
-#' TSK(n = 1200, ncat = 5, res_prop = res.prop)
+#' TSK(n = 1200, res_prop = res.prop)
 #' 
 #' @references
 #' 
@@ -27,7 +26,8 @@
 #' 
 #' \insertRef{McDonald1999}{AUTTT}
 
-TSK <- function(n, ncat, res_prop){
+TSK <- function(n, res_prop){
+  ncat <- length(res_prop)
   cat <- seq(1, ncat)
   freq <- res_prop*n
   total_all <- sum(cat*res_prop*n)

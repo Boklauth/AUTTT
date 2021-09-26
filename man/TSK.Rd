@@ -4,12 +4,10 @@
 \alias{TSK}
 \title{Thresholds, Skewness, and Kurtosis}
 \usage{
-TSK(n, ncat, res_prop)
+TSK(n, res_prop)
 }
 \arguments{
 \item{n}{A sample size as an interger.}
-
-\item{ncat}{The number of categorical response. For example, a 5-point Likert scale item has a value of 5 for the variable ncat.}
 
 \item{res_prob}{A vector of categorical response probabilities.}
 }
@@ -28,7 +26,7 @@ res2<-16/120
 res3<-50/120
 res4<-50/120
 res.prop<-c(res1, res2, res3, res4)
-TSK(n = 1200, ncat = 5, res_prop = res.prop)
+TSK(n = 1200, res_prop = res.prop)
 
 }
 \references{
