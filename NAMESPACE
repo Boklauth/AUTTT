@@ -2,6 +2,7 @@
 
 export(TSK)
 export(create_theta_mvn)
+export(simdata_faov)
 export(simdata_grm)
 export(to_cormatrix)
 export(to_covmatrix)

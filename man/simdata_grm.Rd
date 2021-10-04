@@ -2,7 +2,7 @@
 % Please edit documentation in R/simdata_grm.R
 \name{simdata_grm}
 \alias{simdata_grm}
-\title{Simulate Observed Ordinal Variables Using the Graded Response Model}
+\title{Simulate Observed Binary and Ordinal Variables Using Unidimenstional and Multidimensional Graded Response Models}
 \usage{
 simdata_grm(model, theta_matrix, a, d, N, R, method, file_dir, file_prefix)
 }
@@ -12,10 +12,11 @@ simdata_grm(model, theta_matrix, a, d, N, R, method, file_dir, file_prefix)
 \item{theta_matrix}{An n x m matrix of latent variables (theta), where n is
 the number of sample size, and m is the total number of dimensions.}
 
-\item{a}{An n x 1 vector of item discrimination parameters, which must be
+\item{a}{An p x 1 vector of item discrimination parameters, where p is the
+total number of the observed variables. This vector must be
 arranged in the order of appearance in the model.}
 
-\item{d}{An n x Cj-1 matrix of the IRT intercept parameters, where Cj is the
+\item{d}{An p x Cj-1 matrix of the IRT intercept parameters, where Cj is the
 total number of category responses. A category response is represented by k,
 where k = 1,2,...,Cj.}
 
@@ -31,16 +32,16 @@ from the standard normal distribution.}
 \item{file_dir}{A directory for storing the data sets.}
 
 \item{file_prefix}{A file prefix in characters or/and numbers but special
-characeters.}
+characters.}
 }
 \value{
 It generates data sets with the model specifications given. It also
-response probabilities for each dataset and average response probabilities
-across the items and replications.
+provides response probabilities for each data set and average response
+probabilities across the items and replications.
 }
 \description{
-This function simulates observed ordinal variables in unidimensional and
-multidimensional models using the graded response model (GRM) by Samejima (1969).
+This function simulates observed binary and ordinal variables in unidimensional and
+multidimensional IRT models using the graded response model (GRM) by Samejima (1969).
 }
 \examples{
 library(AUTTT)

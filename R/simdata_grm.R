@@ -1,14 +1,15 @@
-#' Simulate Observed Ordinal Variables Using the Graded Response Model 
+#' Simulate Observed Binary and Ordinal Variables Using Unidimenstional and Multidimensional Graded Response Models 
 #'
-#' This function simulates observed ordinal variables in unidimensional and 
-#' multidimensional models using the graded response model (GRM) by Samejima (1969).
+#' This function simulates observed binary and ordinal variables in unidimensional and 
+#' multidimensional IRT models using the graded response model (GRM) by Samejima (1969).
 #'  
 #' @param model A model as a list object (see examples).
 #' @param theta_matrix An n x m matrix of latent variables (theta), where n is 
 #' the number of sample size, and m is the total number of dimensions. 
-#' @param a An n x 1 vector of item discrimination parameters, which must be 
+#' @param a An p x 1 vector of item discrimination parameters, where p is the 
+#' total number of the observed variables. This vector must be
 #' arranged in the order of appearance in the model.
-#' @param d An n x Cj-1 matrix of the IRT intercept parameters, where Cj is the 
+#' @param d An p x Cj-1 matrix of the IRT intercept parameters, where Cj is the 
 #' total number of category responses. A category response is represented by k,
 #' where k = 1,2,...,Cj.
 #' @param N A numeric value for the  sample size
@@ -19,10 +20,10 @@
 #' from the standard normal distribution. 
 #' @param file_dir A directory for storing the data sets. 
 #' @param file_prefix A file prefix in characters or/and numbers but special 
-#' characeters. 
+#' characters. 
 #' @return It generates data sets with the model specifications given. It also
-#' response probabilities for each dataset and average response probabilities 
-#' across the items and replications. 
+#' provides response probabilities for each data set and average response 
+#' probabilities across the items and replications. 
 #' 
 #' @export
 #' @examples
@@ -131,7 +132,6 @@
 #'             method = "N",
 #'             file_dir = getwd(),
 #'             file_prefix = "test1")
-
 #' @references
 #' 
 #' \insertRef{Samejima1969}{AUTTT}
@@ -233,8 +233,6 @@ simdata_grm <- function(model,
         cat_grm2[cat_grm2==2] <- 1
       }
 
-      # generated categorical data: cat_grm2
-      
       # check response probabilities per replication
       res_prob_tb <- NULL
       for (item in 1:nvar){
