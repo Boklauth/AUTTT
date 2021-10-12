@@ -20,6 +20,8 @@
 #' 
 #' @references
 #' 
+#' \insertRef{Hahs_Vaughn2012}{AUTTT}
+#' 
 #' \insertRef{Finney2013}{AUTTT}
 #' 
 #' \insertRef{Kline2015}{AUTTT}
@@ -37,7 +39,7 @@ TSK <- function(n, res_prop){
   g1 <- sum((freq*(cat-mu)^3)/n)/(sum((freq*(cat-mu)^2)/n)^(3/2)) # correct
   
   # kurtosis
-  Kurt <- sum((freq*(cat-mu)^4)/n)/(sum((freq*(cat-mu)^2)/n)^(4/2)) # correct
+  Kurt <- sum((freq*(cat-mu)^4)/n)/(sum((freq*(cat-mu)^2)/n)^(4/2))-3 # correct
   
   # adjusted skewness
   
@@ -48,7 +50,7 @@ TSK <- function(n, res_prop){
   responses <- rep(cat, freq)
   R.g1 <- moments::skewness(responses)
   R.G1 <- R.g1*sqrt(n*(n-1))/(n-2)
-  R.Kurt <- moments::kurtosis(responses)
+  R.Kurt <- moments::kurtosis(responses)-3
   
   # calculate thresholds
   # cumulative proportions

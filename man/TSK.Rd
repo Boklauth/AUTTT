@@ -30,6 +30,8 @@ TSK(n = 1200, res_prop = res.prop)
 
 }
 \references{
+\insertRef{Hahs_Vaughn2012}{AUTTT}
+
 \insertRef{Finney2013}{AUTTT}
 
 \insertRef{Kline2015}{AUTTT}
