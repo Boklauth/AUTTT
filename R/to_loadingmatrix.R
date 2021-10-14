@@ -1,4 +1,4 @@
-#' Convert a Correlation Vector to a Correlation Matrix
+#' Convert a Factor Loading Vector to a Factor Loading Matrix
 #'
 #' The function to_loadingmatrix converts a vector of factor loadings
 #' to a p x m factor loading matrix in a confirmatory factor analysis 

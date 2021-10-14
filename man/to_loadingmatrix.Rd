@@ -2,7 +2,7 @@
 % Please edit documentation in R/to_loadingmatrix.R
 \name{to_loadingmatrix}
 \alias{to_loadingmatrix}
-\title{Convert a Correlation Vector to a Correlation Matrix}
+\title{Convert a Factor Loading Vector to a Factor Loading Matrix}
 \usage{
 to_loadingmatrix(loading_vec, model)
 }

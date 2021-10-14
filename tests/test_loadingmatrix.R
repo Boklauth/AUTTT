@@ -1,6 +1,6 @@
 # test for to_loadingmatrix
 library(AUTTT)
-
+?to_loadingmatrix()
 # 12 items with unequal number of items per dimension, 3 dimensions
 lambs <- runif(12, 7, 9.5)
 mymodel <- list(c(1,2,3,4), c(5,6,7), c(8, 9,10, 11, 12))
