@@ -9,6 +9,7 @@
 #'         
 #' @export
 #' @examples
+#' library(AUTTT)
 #' to_cormatrix(cor_vec = c(0.3, 0.4, 0.5, 0.6, 0.42, 0.52), 
 #' n_dim = 4)
 #' 

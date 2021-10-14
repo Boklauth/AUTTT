@@ -19,6 +19,7 @@ to_cormatrix will return a n_dim x n_dim correlation matrix with 1 in the diagon
 The function to_cormatrix converts a correlation vector to a correlation matrix
 }
 \examples{
+library(AUTTT)
 to_cormatrix(cor_vec = c(0.3, 0.4, 0.5, 0.6, 0.42, 0.52), 
 n_dim = 4)
 
