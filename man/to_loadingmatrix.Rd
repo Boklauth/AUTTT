@@ -24,3 +24,10 @@ The function to_loadingmatrix converts a vector of factor loadings
 to a p x m factor loading matrix in a confirmatory factor analysis
 model. This creates a loading matrix with no cross-factor loadings.
 }
+\examples{
+library(AUTTT)
+
+lambs <- runif(12, 7, 9.5)
+mymodel <- list(c(1,2,3,4), c(5,6,7), c(8, 9,10, 11, 12))
+to_loadingmatrix(loading_vec = lambs, model = mymodel)
+}

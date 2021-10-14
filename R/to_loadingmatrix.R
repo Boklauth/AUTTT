@@ -14,11 +14,12 @@
 #' is the total number of dimensions. 
 #'         
 #' @export
+#' @examples
 #' library(AUTTT)
 #' 
 #' lambs <- runif(12, 7, 9.5)
 #' mymodel <- list(c(1,2,3,4), c(5,6,7), c(8, 9,10, 11, 12))
-#' to_loadingmatrix(loading_vec = lambs, model = model)
+#' to_loadingmatrix(loading_vec = lambs, model = mymodel)
 
 to_loadingmatrix <- function(loading_vec, model){
   # declare variables
