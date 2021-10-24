@@ -1,4 +1,5 @@
 # find the constant
+library(AUTTT)
 y <- seq(-3, 3, 0.01)
 # plotting pdf of a gamma dist
 shape <- 5
