@@ -1,6 +1,6 @@
 Package: AUTTT
 Title: A Unified Treatment in Test Theory
-Version: 1.0.6
+Version: 1.0.7
 Authors@R:
   person(given = "Bo",
          family = "Klauth",
@@ -8,10 +8,10 @@ Authors@R:
          email = "bklauth@gmail.com",
          comment = c(ORCID = "0000-0001-9442-4223"))
 Description: This package is a companion for categorical item factor analysis, also known as factor analysis with categorical veriables (FAOV), and graded response model, GRM. It converts FAOV parameters to IRT GRM parameters, It calculates thresholds, skewness, and kurtosis from response probabilities. It can also calculate response probabilities from the thresholds.
-License:MIT + file LICENSE
+License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Imports: Rdpack, moments
 RdMacros: Rdpack
