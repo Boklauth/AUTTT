@@ -96,14 +96,8 @@ gamma_from_normal <- function(shape, rate, mean_vec, cov_matrix, size, c,seed_nu
   kurt <- moments::kurtosis(X)
   cor_mat <- cor(X)
   cov_mat <- cov(X)
-  # Some information for the user.
-  message("......................................")
-  message("Properties of the generated variables:")
-  message("......................................")
-  print(paste0("Seed number: ", seed_num))
-  print(paste0("Total number of iterations: ", j))
   scaled_X = scale(X)  
-  return(list("theta" = X, 
+  return(list("X" = X, 
               "scaled.X" = scaled_X,
               "skew" = skew, 
               "kurt" = kurt, 
