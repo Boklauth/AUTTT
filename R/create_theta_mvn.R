@@ -22,6 +22,7 @@
 #' @export
 #' @examples
 #' # example: Three-factor model
+#' library(AUTTT)
 #'# n. of dimensions = 3
 #' mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
 #' sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
@@ -45,8 +46,7 @@
 #' @seealso [to_cormatrix()],[to_covmatrix()], [TSK()]
  
 
-create_theta_mvn <- function(size, mean_vec, sd_vec, ifcor_vec){
-  require(AUTTT)
+create_theta_mvn <- function(size, mean_vec, sd_vec, ifcor_vec, seed_num){
   # n of dimensions
   d <- length(sd_vec)
   
@@ -88,17 +88,29 @@ create_theta_mvn <- function(size, mean_vec, sd_vec, ifcor_vec){
   my_covmat_input <- to_covmatrix(cor_matrix = my_cormat_input, sd_vec=sd_vec)
   unscaled_ds_names <- NULL
   scaled_ds_names <- NULL
-  
-    mythetas <- MultiRNG::draw.d.variate.normal(no.row = size,
-                                                d = n_dim, 
-                                                mean.vec = mean_vec, 
-                                                cov.mat = my_covmat_input)
-    # Assign data sets
+  set.seed(seed_num)
+    X <- MultiRNG::draw.d.variate.normal(no.row = size,
+                                          d = n_dim, 
+                                          mean.vec = mean_vec, 
+                                          cov.mat = my_covmat_input,
+                                          seed_num)
     
     
-    
-  obj <- list("unscaled_ds" = mythetas, 
-              "scaled_ds" = scale(mythetas))  
-  
-  return(obj)
+    skew <- moments::skewness(X)
+    kurt <- moments::kurtosis(X)
+    cor_mat <- cor(X)
+    cov_mat <- cov(X)
+    # Some information for the user.
+    message("......................................")
+    message("Properties of the generated variables:")
+    message("......................................")
+    print(paste0("Seed number: ", seed_num))
+    print(paste0("Total number of iterations: ", j))
+    scaled_X = scale(X)  
+    return(list("theta" = X, 
+                "scaled.X" = scaled_X,
+                "skew" = skew, 
+                "kurt" = kurt, 
+                "cor_mat" = cor_mat, 
+                "cov_mat" = cov_mat))
 }

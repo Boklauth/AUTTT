@@ -102,6 +102,12 @@ gamma_from_normal <- function(shape, rate, mean_vec, cov_matrix, size, c,seed_nu
   message("......................................")
   print(paste0("Seed number: ", seed_num))
   print(paste0("Total number of iterations: ", j))
-  return(list("skew" = skew, "kurt" = kurt, "cor_mat" = cor_mat, "cov_mat" = cov_mat))
+  scaled_X = scale(X)  
+  return(list("theta" = X, 
+              "scaled.X" = scaled_X,
+              "skew" = skew, 
+              "kurt" = kurt, 
+              "cor_mat" = cor_mat, 
+              "cov_mat" = cov_mat))
 }
 
