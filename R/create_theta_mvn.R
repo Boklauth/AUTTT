@@ -13,6 +13,7 @@
 #' j = 2, 3,...,m, and m is the total number of dimensions. For example, 
 #' with three factors, the pair facotrs i and j is arranged as follows: Factor 1 and Factor 2, 
 #' Factor 1 and Factor 3, and Factor 2 and Factor 3.
+#' @param seed_num A integer value used as a seed number for random number generation.
 #' 
 #' @return It will return two data sets: a raw data set and a scaled data set. 
 #' A scale data set has each dimension standardized. That is each dimension is 
@@ -22,26 +23,16 @@
 #' @export
 #' @examples
 #' # example: Three-factor model
-#' library(AUTTT)
-#'# n. of dimensions = 3
-#' mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
-#' sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
-#' f_cor <- c(0.3, 0.5, 0.6) # interfactor correlation vector
-#' # convert the cor. vector to cor.matrix
-#'
-#' # create theta values
-#' # 2-multivariate normal theta with three dimensions
-#'
-# create theta values from a  multivariate normal distribution
-#' output <- create_theta_mvn(size = 10, 
-#'                           mean_vec = c(-0.1, 0, 0.1), 
-#'                           sd_vec = c(0.95, 0.98, 1.1),
-#'                           ifcor_vec = c(0.3, 0.5, 0.6))
-#'
-#' # Get raw theta values (latent variable scores or ability scores)
-#' output$unscaled_ds
-#' # Get standardized theta values (mean = 0, standard deviation =1)
-#' output$scaled_ds
+#'	library(AUTTT)
+#'	mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
+#'	sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
+#'	f_cor <- c(0.3, 0.5, 0.75) # interfactor correlation vector
+#'	
+#'	output <- create_theta_mvn(size = 300, 
+#'	                 mean_vec = mean_vec, 
+#'	                 sd_vec = sd_vec, 
+#'	                 ifcor_vec = f_cor, 
+#'	                 seed_num = 45679)
 #' 
 #' @seealso [to_cormatrix()],[to_covmatrix()], [TSK()]
  
@@ -92,8 +83,7 @@ create_theta_mvn <- function(size, mean_vec, sd_vec, ifcor_vec, seed_num){
     X <- MultiRNG::draw.d.variate.normal(no.row = size,
                                           d = n_dim, 
                                           mean.vec = mean_vec, 
-                                          cov.mat = my_covmat_input,
-                                          seed_num)
+                                          cov.mat = my_covmat_input)
     
     
     skew <- moments::skewness(X)

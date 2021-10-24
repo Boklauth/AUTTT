@@ -4,7 +4,7 @@
 \alias{create_theta_mvn}
 \title{A Function to Create Variables from a Multivariate Normal Distribution}
 \usage{
-create_theta_mvn(size, mean_vec, sd_vec, ifcor_vec)
+create_theta_mvn(size, mean_vec, sd_vec, ifcor_vec, seed_num)
 }
 \arguments{
 \item{size}{A sample size, which is a positive integer value.}
@@ -18,6 +18,8 @@ which are arranged for the pair Factors i and j, where i = 1, 2,...,m-1,
 j = 2, 3,...,m, and m is the total number of dimensions. For example,
 with three factors, the pair facotrs i and j is arranged as follows: Factor 1 and Factor 2,
 Factor 1 and Factor 3, and Factor 2 and Factor 3.}
+
+\item{seed_num}{A integer value used as a seed number for random number generation.}
 }
 \value{
 It will return two data sets: a raw data set and a scaled data set.
@@ -33,24 +35,16 @@ standard deviation.
 }
 \examples{
 # example: Three-factor model
-# n. of dimensions = 3
+library(AUTTT)
 mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
 sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
-f_cor <- c(0.3, 0.5, 0.6) # interfactor correlation vector
-# convert the cor. vector to cor.matrix
+f_cor <- c(0.3, 0.5, 0.75) # interfactor correlation vector
 
-# create theta values
-# 2-multivariate normal theta with three dimensions
-
-output <- create_theta_mvn(size = 10, 
-                          mean_vec = c(-0.1, 0, 0.1), 
-                          sd_vec = c(0.95, 0.98, 1.1),
-                          ifcor_vec = c(0.3, 0.5, 0.6))
-
-# Get raw theta values (latent variable scores or ability scores)
-output$unscaled_ds
-# Get standardized theta values (mean = 0, standard deviation =1)
-output$scaled_ds
+output <- create_theta_mvn(size = 300, 
+                 mean_vec = mean_vec, 
+                 sd_vec = sd_vec, 
+                 ifcor_vec = f_cor, 
+                 seed_num = 45679)
 
 }
 \seealso{
