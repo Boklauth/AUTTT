@@ -17,7 +17,7 @@
 #'         
 #' @export
 #' @examples
-#' find the constant
+#' # find the constant
 #'	y <- seq(-3, 3, 0.01)
 #'	# plotting pdf of a gamma dist
 #'	shape <- 5
@@ -42,7 +42,7 @@
 #'	my_covmat_input <- AUTTT::to_covmatrix(cor_matrix = my_cormat_input, sd_vec=sd_vec)
 #'	seed_num <- 45679
 #'	
-#'	gamma_from_normal(shape = shape, 
+#'	theta <- gamma_from_normal(shape = shape, 
 #'	                  rate = rate, 
 #'	                  mean_vec = mean_vec, 
 #'	                  cov_matrix = my_covmat_input, 
@@ -52,7 +52,7 @@
 #'	# see the shape the sample
 #'	par(mfrow = c(2,2))
 #'	for (i in 1:3){
-#'	  y <- sort(X[,i])
+#'	  y <- sort(theta$X[,i])
 #'	  hist(y, prob=TRUE, ylim=c(0, 1))  
 #'	  lines(y, dgamma(y, shape = 5, scale=1/4))
 #'	}

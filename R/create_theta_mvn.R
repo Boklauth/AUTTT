@@ -81,7 +81,7 @@ create_theta_mvn <- function(size, mean_vec, sd_vec, ifcor_vec, seed_num){
   scaled_ds_names <- NULL
   set.seed(seed_num)
     X <- MultiRNG::draw.d.variate.normal(no.row = size,
-                                          d = n_dim, 
+                                          d = d, 
                                           mean.vec = mean_vec, 
                                           cov.mat = my_covmat_input)
     

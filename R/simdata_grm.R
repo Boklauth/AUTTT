@@ -197,7 +197,7 @@ simdata_grm <- function(model,
           # convert it to cum. probabilities
           # per GRM's model (Samejima, 1969) P(x>=0) = 1, P(x >= k+1) = 0
           # P(x>=1) > P(x >= 2) >...> P(x >= k)
-          cp_x[,t] <-  pnorm(x[,t], 0, 1, lower.tail = TRUE)
+          cp_x[,t] <-  pnorm(x[,t], 0, 1, lower.tail = TRUE) # lower.tail should be FALSE
         }  
         # x_jk (incorporating theta value in the term) for person i
         x_jk <- t(x) # will iterate for 1 person and all thresholds and items at a time
