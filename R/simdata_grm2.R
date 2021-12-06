@@ -198,7 +198,7 @@ simdata_grm <- function(model,
           # convert it to cum. probabilities
           # per GRM's model (Samejima, 1969) P(x>=0) = 1, P(x >= k+1) = 0
           # P(x>=1) > P(x >= 2) >...> P(x >= k)
-          cp_x[,t] <-  pnorm(x[,t], 0, 1, lower.tail = FALSE) # lower.tail should be FALSE
+          cp_x[,t] <-  pnorm(x[,t], 0, 1, lower.tail = TRUE) # lower.tail should be FALSE
         }  
         # x_jk (incorporating theta value in the term) for person i
         x_jk <- t(x) # will iterate for 1 person and all thresholds and items at a time
@@ -213,10 +213,10 @@ simdata_grm <- function(model,
         # approach 1: using U(0,1); i.e., uniform dist. from 0 and 1
         if (method == "U"){
           q_u <- runif(nvar, 0, 1) # this equals punif(q_u, 0, 1, lower.tail = TRUE)
-          p <- punif(q_u, 0, 1, lower.tail = FALSE)
+          p <- punif(q_u, 0, 1, lower.tail = TRUE)
         } else if (method == "N"){ # approach 2: using N(0,1); i.e., standard normal dist.
           q_n <- rep(rnorm(1, 0, 1), nvar)
-          p <- pnorm(q_n, 0, 1, lower.tail = FALSE)
+          p <- pnorm(q_n, 0, 1, lower.tail = TRUE)
         }
         
         # categorize the underlying variables
