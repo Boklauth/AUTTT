@@ -293,7 +293,6 @@ write.table(rep_list3,
   
   return(list(model_spec = list(model = model,
                                 theta_matrix = theta_matrix,
-                                thresholds = thresholds,
                                 N = N,
                                 R = R,
                                 file_dir = file_dir,
