@@ -55,9 +55,10 @@ f_cor <- c(0.3, 0.5, 0.6) # interfactor correlation vector
 theta1 <- create_theta_mvn(size = 300, 
                            mean_vec = c(-0.1, 0, 0.1), 
                            sd_vec = c(0.95, 0.98, 1.1),
-                           ifcor_vec = c(0.3, 0.5, 0.6))
+                           ifcor_vec = c(0.3, 0.5, 0.6), 
+                           seed_num = 456789)
 
-theta1$scaled_ds
+theta1$scaled.X
 
 
 
@@ -86,7 +87,7 @@ setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
 
 test1 <- simdata_grm(model = list(c(1,2,3,4), c(5,6,7,8), c(9,10,11,12)),
                      # theta_matrix = unscaled_3f_mvn300,
-                     theta_matrix = scaled_3f_mvn300, 
+                     theta_matrix = theta1$scaled.X, 
                      a = a_vec,
                      d = d_vec,
                      N = 300,
