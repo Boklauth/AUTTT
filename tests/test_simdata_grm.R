@@ -4,41 +4,57 @@ library(AUTTT)
 # n. of dimensions = 3
 mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
 sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
-f_cor <- c(0.3, 0.5, 0.6) # interfactor correlation vector
+f_cor <- c(0.3, 0.5, 0.75) # interfactor correlation vector
 # convert the cor. vector to cor.matrix
 
 # create theta values
 # 2-multivariate normal theta with three dimensions
 
 theta1 <- create_theta_mvn(size = 300, 
-                           mean_vec = c(-0.1, 0, 0.1), 
-                           sd_vec = c(0.95, 0.98, 1.1),
-                           ifcor_vec = c(0.3, 0.5, 0.6))
+                           mean_vec = mean_vec, 
+                           sd_vec = sd_vec,
+                           ifcor_vec = f_cor, 
+                           seed_num = 45678)
 
-theta1$scaled_ds
+theta1$scaled.X
 
 
 
 # CFA-OV parameters
 set.seed(1234)
-lambda <- runif(12, 0.8, 0.93) # loadings for 12 items
+nvar <- 21
+lambda <- runif(nvar, 0.8, 0.95) # loadings for 21 items
 cat_prob2 <- c(0.04, 0.06, 0.11, 0.37, 0.42) # m. skewed prob.
 temp <- TSK(n=300, res_prop = cat_prob2)
 T2 <- temp$thresholds
+
 # Convert to IRT parameters
 # A vector of item discrimination
 a_vec <- lambda/sqrt(1-lambda^2)
-# a vector of item difficulty
-nvar <- length(a_vec)
+
+# threshold matrix 
 thresholds_m <- matrix(rep(T2, nvar), 
                        nrow = nvar, 
                        ncol=length(T2),
                        byrow = TRUE)
-# item difficulty parameters
-b_vec <- thresholds_m/lambda
-
 # intercept parameters
-d_vec <- -a_vec*b_vec
+d_vec <- thresholds_m/sqrt(1-lambda^2)
+
+setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
+
+test1 <- simdata_grm(model = list(c(1,2,3,4,5, 6, 7), 
+                                  c(8, 9, 10, 11, 12, 13, 14), 
+                                  c(15, 16, 17, 18, 19, 20, 21)),
+                     theta_matrix = theta1$scaled.X, 
+                     a = a_vec,
+                     d = d_vec,
+                     N = 300,
+                     R = 2,
+                     method = "U",
+                     file_dir = getwd(),
+                     file_prefix = "test1")
+
+
 
 setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
 

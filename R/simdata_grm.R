@@ -157,7 +157,7 @@ simdata_grm <- function(model,
   nTs <- ncol(d) # n of thresholds
   
   # arrange item discrimination in a p x m form, 
-  # p = max n. of items, m max n. of factors
+  # p = max n. of items, m = max n. of factors
   df <- matrix(rep(0, length(a)), nrow=length(a), ncol=length(model))
   param <- a
   f <- 1
@@ -203,9 +203,9 @@ simdata_grm <- function(model,
         # x_jk (incorporating theta value in the term) for person i
         x_jk <- t(x) # will iterate for 1 person and all thresholds and items at a time
         # cumulative probabilities for 1 person, all thresholds, and all items
-        # but I must add the prob. of item category 0, P(x >= 0) = 1 
+        # but I must add the prob. of item category >= k, P(x >= k) = 0 
         # to avoid error at min(which()) below
-        cp_x_jk <- t(cbind(1, cp_x)) 
+        cp_x_jk <- t(cbind(cp_x, 0)) 
         
         
         # select a probability from a uniform distribution
@@ -222,7 +222,7 @@ simdata_grm <- function(model,
         # categorize the underlying variables
         
         for (item in 1: nvar){
-          cat_grm2[person,item] <- max(which(cp_x_jk[,item] >= p[item]))
+          cat_grm2[person,item] <- min(which(cp_x_jk[,item] <= p[item]))
         }
         
     
