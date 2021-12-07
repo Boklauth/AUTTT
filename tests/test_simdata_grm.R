@@ -41,10 +41,10 @@ thresholds_m <- matrix(rep(T2, nvar),
 d_vec <- thresholds_m/sqrt(1-lambda^2)
 
 setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
-
-test1 <- simdata_grm(model = list(c(1,2,3,4,5, 6, 7), 
-                                  c(8, 9, 10, 11, 12, 13, 14), 
-                                  c(15, 16, 17, 18, 19, 20, 21)),
+model1 <- list(c(1,2,3,4,5, 6, 7), 
+               c(8, 9, 10, 11, 12, 13, 14), 
+               c(15, 16, 17, 18, 19, 20, 21))
+test1 <- simdata_grm(model = model1,
                      theta_matrix = theta1$scaled.X, 
                      a = a_vec,
                      d = d_vec,
@@ -59,9 +59,9 @@ test1$avg_res_prob
 
 setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
 
-test1 <- simdata_grm(model = list(c(1,2,3,4), c(5,6,7,8), c(9,10,11,12)),
+test2 <- simdata_grm(model = model1,
                      # theta_matrix = unscaled_3f_mvn300,
-                     theta_matrix = scaled_3f_mvn300, 
+                     theta_matrix = theta1$scaled.X, 
                      a = a_vec,
                      d = d_vec,
                      N = 300,
@@ -71,7 +71,7 @@ test1 <- simdata_grm(model = list(c(1,2,3,4), c(5,6,7,8), c(9,10,11,12)),
                      file_prefix = "test1")
 
 # response probabilities 
-test1$res_prob
+test2$res_prob
 
 # response probabilities across items and replications
 test1$avg_res_prob
@@ -80,9 +80,9 @@ test1$avg_res_prob
 # One factor model
 
 # 1 dimension of theta
-scaled_1f_mvn300 <- theta1$scaled_ds[,1]
+scaled_1f_mvn300 <- theta1$scaled.X[,1]
 
-test2 <- simdata_grm(model = list(seq(1,12)),
+test3 <- simdata_grm(model = list(seq(1,21)),
             theta_matrix = scaled_1f_mvn300,
             a = a_vec,
             d = d_vec,
@@ -91,6 +91,8 @@ test2 <- simdata_grm(model = list(seq(1,12)),
             method = "N",
             file_dir = getwd(),
             file_prefix = "test1")
+
+test3$avg_res_prob
 
 # Binary responses
 # One factor model
@@ -108,19 +110,17 @@ thresholds_m <- matrix(rep(T2, nvar),
                        ncol=1,
                        byrow = TRUE)
 
-b_vec <- thresholds_m/lambda
-
 # intercept parameters
-d_vec <- -a_vec*b_vec
+d_vec <- thresholds_m/sqrt(1-lambda^2)
   
 setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
 
-simdata_grm(model = list(seq(1,12)),
-            theta_matrix = unscaled_1f_mvn300,
+simdata_grm(model = list(seq(1,21)),
+            theta_matrix = scaled_1f_mvn300,
             a = a_vec,
             d = d_vec,
             N = 300,
-            R = 5,
+            R = 50,
             method = "N",
             file_dir = getwd(),
             file_prefix = "test1")
