@@ -1,6 +1,6 @@
 # Test simdata_grm
 library(AUTTT)
-
+?simdata_grm
 # n. of dimensions = 3
 mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
 sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension
@@ -50,11 +50,12 @@ test1 <- simdata_grm(model = list(c(1,2,3,4,5, 6, 7),
                      d = d_vec,
                      N = 300,
                      R = 2,
-                     method = "U",
+                     method = "N",
                      file_dir = getwd(),
                      file_prefix = "test1")
 
-
+test1$res_prob
+test1$avg_res_prob
 
 setwd("C:/Users/shh6304/Documents/My Documents/test_grm")
 
