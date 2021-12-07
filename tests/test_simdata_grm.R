@@ -1,6 +1,6 @@
 # Test simdata_grm
 library(AUTTT)
-?simdata_grm
+
 # n. of dimensions = 3
 mean_vec <- c(-0.1, 0, 0.1) # mean vector for each dimension
 sd_vec <- c(0.95, 0.98, 1.1) # sd vector for each dimension

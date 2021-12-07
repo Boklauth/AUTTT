@@ -142,7 +142,7 @@
 #' 
 #' \insertRef{DeMars2012}{AUTTT}
 
-simdata_grm <- function(model,
+simdata_grm2 <- function(model,
                         theta_matrix, 
                         a, 
                         d, 
