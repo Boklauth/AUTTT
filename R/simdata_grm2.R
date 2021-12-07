@@ -1,7 +1,8 @@
 #' Simulate Observed Binary and Ordinal Variables Using Unidimenstional and Multidimensional Graded Response Models 
 #'
 #' This function simulates observed binary and ordinal variables in unidimensional and 
-#' multidimensional IRT models using the graded response model (GRM) by Samejima (1969).
+#' multidimensional IRT models using the graded response model (GRM) by Samejima (1969) 
+#' according to MPlus, which uses negative intercept as opposed to positive intercept in IRT. 
 #'  
 #' @param model A model as a list object (see examples).
 #' @param theta_matrix An n x m matrix of latent variables (theta), where n is 
