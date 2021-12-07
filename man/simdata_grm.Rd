@@ -50,7 +50,8 @@ This function simulates observed binary and ordinal variables in unidimensional 
 multidimensional IRT models using the graded response model (GRM) by Samejima (1969).
 
 This function simulates observed binary and ordinal variables in unidimensional and
-multidimensional IRT models using the graded response model (GRM) by Samejima (1969).
+multidimensional IRT models using the graded response model (GRM) by Samejima (1969)
+according to MPlus, which uses negative intercept as opposed to positive intercept in IRT.
 }
 \examples{
 library(AUTTT)
