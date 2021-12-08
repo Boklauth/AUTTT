@@ -213,7 +213,8 @@ simdata_grm <- function(model,
         # approach 1: using U(0,1); i.e., uniform dist. from 0 and 1
         if (method == "U"){
           q_u <- runif(nvar, 0, 1) # this equals punif(q_u, 0, 1, lower.tail = TRUE)
-          p <- punif(q_u, 0, 1, lower.tail = FALSE)
+          p <- q_u
+          # p <- punif(q_u, 0, 1, lower.tail = FALSE)
         } else if (method == "N"){ # approach 2: using N(0,1); i.e., standard normal dist.
           q_n <- rep(rnorm(1, 0, 1), nvar)
           p <- pnorm(q_n, 0, 1, lower.tail = FALSE)
@@ -253,14 +254,14 @@ simdata_grm <- function(model,
       
       # write data out per each replication
       write.table(cat_grm2, 
-                  paste0(file_dir, "/", file_prefix, "_grm2_rep", r, ".dat"),
+                  paste0(file_dir, "/", file_prefix, "_grm_rep", r, ".dat"),
                   row.names = FALSE, 
                   col.names = FALSE,
                   quote = FALSE)
       
 
 # compile a list of rep names ####
-rep_name <- paste0(file_prefix, "_grm2_rep", r, ".dat")
+rep_name <- paste0(file_prefix, "_grm_rep", r, ".dat")
 rep_list3 <- rbind(rep_list3, rep_name)
 
  # write it out

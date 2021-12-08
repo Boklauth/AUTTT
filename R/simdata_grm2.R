@@ -266,7 +266,7 @@ rep_list3 <- rbind(rep_list3, rep_name)
 
  # write it out
 write.table(rep_list3,
-            paste0(file_dir, "/", file_prefix, "_grm_replist.dat"),
+            paste0(file_dir, "/", file_prefix, "_grm2_replist.dat"),
             row.names = FALSE,
             col.names = FALSE,
             quote = FALSE)
