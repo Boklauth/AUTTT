@@ -145,7 +145,7 @@ simdata_grm <- function(model,
                         theta_matrix, 
                         a, 
                         d, 
-                        N, 
+                        N = NULL, 
                         R, 
                         method,
                         file_dir, 
@@ -155,6 +155,13 @@ simdata_grm <- function(model,
   # declare global parameters ####
   theta_values <- theta_matrix
   nTs <- ncol(d) # n of thresholds
+  # sample size
+  if(is.null(N)){
+    N <- nrow(theta_matrix)
+  } else {
+    N <- nrow(theta_matrix)
+  }
+  
   
   # arrange item discrimination in a p x m form, 
   # p = max n. of items, m = max n. of factors
