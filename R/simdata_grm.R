@@ -1,3 +1,4 @@
+
 #' Simulate Observed Binary and Ordinal Variables Using Unidimenstional and Multidimensional Graded Response Models
 #'
 #' This function simulates observed binary and ordinal variables in unidimensional and
@@ -151,7 +152,7 @@ simdata_grm <- function(model,
                         file_dir,
                         file_prefix
                         ){
-
+# testing
   # declare global parameters ####
   theta_values <- theta_matrix
   nTs <- ncol(d) # n of thresholds
