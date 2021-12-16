@@ -276,7 +276,7 @@ mplus_montecarlo_analysis_grm <- function(
   if ((length(Y)/length(FCTR))<3){
     stop("There are too few observed indicators per factor.There should be 3 items per factor.")
   }
-
+  L0 <- "! Author: Bo Klauth"
 
   # # Write lines for Monte Carlo command ####
   # L0 <- "! Author: Bo Klauth"
