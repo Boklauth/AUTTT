@@ -298,14 +298,25 @@ write.table(rep_list3,
   write.csv(theta_values,
             paste0(file_dir, "/", file_prefix, "_dsrep_theta.csv"),
             row.names = FALSE)
+  # vector of theta correlations for passing to mplus_montecarlo_analysis()
+  vfactor.cor <- diag(cor(theta_matrix))
+
+  # factor loadings
+  vloadings <- loadings
+
+  # naming data files for passing to mplus_montecarlo_analysis
+  naming_data_files <- paste0(file_prefix, "_grm_rep*.dat;")
 
   return(list(model_spec = list(model = model,
                                 theta_matrix = theta_matrix,
                                 thresholds = thresholds,
+                                vfactor.cor = vfactor.cor,
+                                vloadings = vloadings,
                                 N = N,
                                 R = R,
                                 file_dir = file_dir,
-                                file_prefix = file_prefix),
+                                file_prefix = file_prefix,
+                                naming_data_files = naming_data_files),
               pop_a = a_jf,
               pop_d = d,
               res_prob = res_prob_tb_BR2,
