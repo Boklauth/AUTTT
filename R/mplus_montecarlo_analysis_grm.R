@@ -234,15 +234,15 @@ mplus_montecarlo_analysis_grm <- function(
     R <- R
   }
 
-  # Check: seed_mplus ####
-
-  if (is.null(seed_mplus)) {
-    seed_mplus <- 4567
-  } else if (seed_mplus <= 0) {
-    stop("A seed number for seed_mplus must be a positive integer.")
-  } else {
-    R <- R
-  }
+  # # Check: seed_mplus ####
+  #
+  # if (is.null(seed_mplus)) {
+  #   seed_mplus <- 4567
+  # } else if (seed_mplus <= 0) {
+  #   stop("A seed number for seed_mplus must be a positive integer.")
+  # } else {
+  #   R <- R
+  # }
 
   # Check: file directory ####
 
