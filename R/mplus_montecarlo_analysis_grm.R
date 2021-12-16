@@ -424,9 +424,9 @@ mplus_montecarlo_analysis_grm <- function(
   # Extract the model for analysis ####
 
 
-
-  MS1 <-  paste0('TITLE: ', 'Analyze data in an MS model, N = ', N, ', R = ', R)
-  MS1.2 <- paste0('TITLE: ', 'Analyze data in an MS model, N = ', N, ', R ', rep, ' of ', R)
+  # titles
+  MS1 <-  paste0('TITLE: ', 'Analyze data in an MS model, N = ', N, ', R = ', R, ';')
+  MS1.2 <- paste0('TITLE: ', 'Analyze data in an MS model, N = ', N, ', R ', rep, ' of ', R, ';')
   usedata <- paste0('DATA: FILE= ', file_dir, "/",
                     unlist(strsplit(naming_data_files, "\\*"))[1], 'list', '.dat;')
 
