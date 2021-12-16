@@ -152,7 +152,7 @@ simdata_grm <- function(model,
                         file_dir,
                         file_prefix
                         ){
-# testing
+
   # declare global parameters ####
   theta_values <- theta_matrix
   nTs <- ncol(d) # n of thresholds
@@ -162,7 +162,10 @@ simdata_grm <- function(model,
   } else {
     N <- nrow(theta_matrix)
   }
-
+# thresholds (for passing to mplus_montecarlo_analysis())
+  loadings <- a/sqrt(1+a^2)
+  thresholds_mat <- d*sqrt(1-loadings^2)
+  thresholds <- thresholds_mat[1,]
 
   # arrange item discrimination in a p x m form,
   # p = max n. of items, m = max n. of factors
@@ -298,7 +301,7 @@ write.table(rep_list3,
 
   return(list(model_spec = list(model = model,
                                 theta_matrix = theta_matrix,
-
+                                thresholds = thresholds,
                                 N = N,
                                 R = R,
                                 file_dir = file_dir,
