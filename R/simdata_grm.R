@@ -299,7 +299,8 @@ write.table(rep_list3,
             paste0(file_dir, "/", file_prefix, "_dsrep_theta.csv"),
             row.names = FALSE)
   # vector of theta correlations for passing to mplus_montecarlo_analysis()
-  vfactor.cor <- diag(cor(theta_matrix))
+  factor_m <- cor(theta_matrix)
+  vfactor.cor <- factor_m[upper.tri(factor.m)]
 
   # factor loadings
   vloadings <- loadings
