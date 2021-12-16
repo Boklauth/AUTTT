@@ -356,15 +356,15 @@ mplus_montecarlo_analysis_grm <- function(
   # Lines of Error Variance: Yerrvarlines ####
   L15 <- '! Error variance'
 
-  Yerrvars <- paste(Y, errvars, sep='*')
-  Yerrvarlines <- NULL
-  for (i in 1:length(model)){
-    D[i] <- ""
-    for (k in min(unlist(model[i])): max(unlist(model[i]))){
-      D[i] <- paste(D[i], Yerrvars[k], sep=' ') # iterate all loading lines per dimension
-    }
-    Yerrvarlines[i] <- paste0(D[i], ';')
-  }
+  # Yerrvars <- paste(Y, errvars, sep='*')
+  # Yerrvarlines <- NULL
+  # for (i in 1:length(model)){
+  #   D[i] <- ""
+  #   for (k in min(unlist(model[i])): max(unlist(model[i]))){
+  #     D[i] <- paste(D[i], Yerrvars[k], sep=' ') # iterate all loading lines per dimension
+  #   }
+  #   Yerrvarlines[i] <- paste0(D[i], ';')
+  # }
 
   # Interfactor corr lines: ####
   L16 <- '! Interfactor correlations'
