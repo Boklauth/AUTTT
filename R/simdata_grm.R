@@ -300,7 +300,7 @@ write.table(rep_list3,
             row.names = FALSE)
   # vector of theta correlations for passing to mplus_montecarlo_analysis()
   factor_m <- cor(theta_matrix)
-  vfactor.cor <- factor_m[upper.tri(factor.m)]
+  vfactor.cor <- factor_m[upper.tri(factor_m)]
 
   # factor loadings
   vloadings <- loadings
