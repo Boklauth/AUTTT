@@ -254,11 +254,11 @@ mplus_montecarlo_analysis_grm <- function(
 
   # Check: file name ####
 
-  if(ext <- unlist(strsplit(file_name, "\\."))[2]=="inp"){
-    file_name <- file_name
-  } else {
-    stop("The file name (file_name) must contain the file extension '.inp'; e.g., 'abcd.inp'.")
-  }
+  # if(ext <- unlist(strsplit(file_name, "\\."))[2]=="inp"){
+  #   file_name <- file_name
+  # } else {
+  #   stop("The file name (file_name) must contain the file extension '.inp'; e.g., 'abcd.inp'.")
+  # }
 
   # Check: Naming data files ####
 
@@ -278,24 +278,24 @@ mplus_montecarlo_analysis_grm <- function(
   }
 
 
-  # Write lines for Monte Carlo command ####
-  L0 <- "! Author: Bo Klauth"
-  # line 1: title
-  L1 <- paste0('TITLE: ', 'Generate data in an MS model, N = ', N, ', R = ', R)
-  # line 2: MONTECARLO command
-  L2 <- 'MONTECARLO:'
-  L3 <- paste0('NAMES = ', Y[1], '-', Y[nYs], ';')
-  L4 <- paste0('NOBSERVATIONS= ',N, ';')
-  L5 <- paste0('NREPS= ',R, ';')
-  L6 <- paste0('SEED= ',seed_mplus, ';')
-  L7 <- paste0('REPSAVE= All;')
-  L8 <- paste0('SAVE= ', naming_data_files)
-  L9 <- paste0('GENERATE= ',Y[1], '-', Y[nYs], '(', nTs, ')', ';')
-  L10 <-  paste0('CATEGORICAL= ', Y[1], '-', Y[nYs], ';')
-
-  # Write MODEL POPULATION ####
-  L11 <- 'MODEL POPULATION:'
-  L12 <- '! Standardized Loadings'
+  # # Write lines for Monte Carlo command ####
+  # L0 <- "! Author: Bo Klauth"
+  # # line 1: title
+  # L1 <- paste0('TITLE: ', 'Generate data in an MS model, N = ', N, ', R = ', R)
+  # # line 2: MONTECARLO command
+  # L2 <- 'MONTECARLO:'
+  # L3 <- paste0('NAMES = ', Y[1], '-', Y[nYs], ';')
+  # L4 <- paste0('NOBSERVATIONS= ',N, ';')
+  # L5 <- paste0('NREPS= ',R, ';')
+  # L6 <- paste0('SEED= ',seed_mplus, ';')
+  # L7 <- paste0('REPSAVE= All;')
+  # L8 <- paste0('SAVE= ', naming_data_files)
+  # L9 <- paste0('GENERATE= ',Y[1], '-', Y[nYs], '(', nTs, ')', ';')
+  # L10 <-  paste0('CATEGORICAL= ', Y[1], '-', Y[nYs], ';')
+  #
+  # # Write MODEL POPULATION ####
+  # L11 <- 'MODEL POPULATION:'
+  # L12 <- '! Standardized Loadings'
 
   # formating into y1*loading1 y2*loading2 ...etc
   Yloadings <- paste(Y, vloadings, sep='*')
