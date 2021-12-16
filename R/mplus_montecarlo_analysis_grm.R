@@ -201,18 +201,18 @@ mplus_montecarlo_analysis_grm <- function(
 
   # Check: loadings, vloadings ####
   # On equal factor loadings and a vector of factor loadings and error variance
-  eloadval <- NULL
-  if(is.null(vloadings)&!is.null(eloadval))  { # vloadings is null and eloadval is NOT null
-    vloadings <- rep(eloadval, nYs)
-    errval <- 1-eloadval^2
-    errvars <- rep(errval, nYs)
-  } else if (!is.null(vloadings)&is.null(eloadval))  {# vloadings is NOT null and eloading is null
-    vloadings <- vloadings
-    errvars <- 1-vloadings^2
-  } else if (is.null(vloadings)&is.null(eloadval)) {
-    stop('A vector of factor loadings (vloadings)
-          and an equal value for all factor loading (eloadval) are empty. Either one of them is needed.')
-  }
+  # eloadval <- NULL
+  # if(is.null(vloadings)&!is.null(eloadval))  { # vloadings is null and eloadval is NOT null
+  #   vloadings <- rep(eloadval, nYs)
+  #   errval <- 1-eloadval^2
+  #   errvars <- rep(errval, nYs)
+  # } else if (!is.null(vloadings)&is.null(eloadval))  {# vloadings is NOT null and eloading is null
+  #   vloadings <- vloadings
+  #   errvars <- 1-vloadings^2
+  # } else if (is.null(vloadings)&is.null(eloadval)) {
+  #   stop('A vector of factor loadings (vloadings)
+  #         and an equal value for all factor loading (eloadval) are empty. Either one of them is needed.')
+  # }
 
   # Check: N, sample size ####
 
