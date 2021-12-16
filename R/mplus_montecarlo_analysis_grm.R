@@ -277,7 +277,8 @@ mplus_montecarlo_analysis_grm <- function(
     stop("There are too few observed indicators per factor.There should be 3 items per factor.")
   }
   L0 <- "! Author: Bo Klauth"
-
+  L3 <- paste0('NAMES = ', Y[1], '-', Y[nYs], ';')
+  L10 <-  paste0('CATEGORICAL= ', Y[1], '-', Y[nYs], ';')
   # # Write lines for Monte Carlo command ####
   # L0 <- "! Author: Bo Klauth"
   # # line 1: title
