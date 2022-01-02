@@ -34,6 +34,13 @@ execute_mplus_scripts <- function(main_dir,
                                   est_folders,
                                   start_condition,
                                   end_condition){
+  # Declare package dependency
+  if (!require(MplusAutomation)){
+    install.packages('MplusAutomation')
+    library(MplusAutomation)
+  }
+
+
   # Run models in the folder (/ML_probit or /ULSMV_delta or /WLSMV_delta)
   start_time <- Sys.time()
   print(paste0("Start time: ", start_time))
