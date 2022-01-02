@@ -3,6 +3,7 @@
 export(TSK)
 export(create_theta_mvn)
 export(diag_residuals)
+export(execute_mplus_scripts)
 export(gamma_from_normal)
 export(gather_mplus_output)
 export(mplus_montecarlo_analysis_grm)

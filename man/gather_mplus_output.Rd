@@ -14,13 +14,26 @@ gather_mplus_output(
 )
 }
 \arguments{
+\item{main_dir}{This is the main directory in which folders representing
+study conditions and data sets for the conditions are stored.}
+
+\item{cell_folders}{This object contains the names of the the folders representing
+the experimental conditions/cells.}
+
 \item{cell_prefix}{It is prefix given to an R object. The function will add
 a number after it to make an object name for a study condition (e.g., U1).}
 
 \item{nreps}{It is the total of replications for a conditions/cell.}
 
-\item{nfolders}{This object contains the names of the the folders representing
-the experimental conditions/cells.}
+\item{methods}{There are three options: "read", "gather", and "all". If it
+is "read", the function only reads the Mplus output files. If "gather", the
+function will gather standardized parameter estimates by assuming that "read"
+method has been executed previously and the R objects are in the Global
+Environment. If "all", the function will first read the results from Mplus
+output files and gather the standardized parameter estimates.}
+
+\item{est_folders}{It is the folder name(s), where Mplus scripts are created and
+stored using the function mplus_montecarlo_analysis_grm2().}
 }
 \value{
 It will return a table with all standardized parameter estimates
@@ -39,7 +52,10 @@ cell_folders <- folders
 est_folder <- c("ULSMV_delta")
 cell_prefix <- "U"
 
-ulsmv_est <- gather_mplus_output(nfolders = length(cell_folders),
+ulsmv_est <- gather_mplus_output(main_dir = main_dir2,
+                                 cell_folders = cell_folders,
+                                 est_folders = "ULSMV_delta",
                                  nreps = 5,
-                                 cell_prefix = "U")
+                                 cell_prefix = "U",
+                                 methods = "gather")
 }

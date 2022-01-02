@@ -2,12 +2,21 @@
 #'
 #' The function gather standardized parameter estimates produced by Mplus.
 #' It reads the file with the extention ".out".
-#'
-#' @param nfolders This object contains the names of the the folders representing
+#' @param main_dir This is the main directory in which folders representing
+#' study conditions and data sets for the conditions are stored.
+#' @param cell_folders This object contains the names of the the folders representing
 #' the experimental conditions/cells.
+#' @param est_folders It is the folder name(s), where Mplus scripts are created and
+#' stored using the function mplus_montecarlo_analysis_grm2().
 #' @param nreps It is the total of replications for a conditions/cell.
 #' @param cell_prefix It is prefix given to an R object. The function will add
 #' a number after it to make an object name for a study condition (e.g., U1).
+#' @param methods There are three options: "read", "gather", and "all". If it
+#' is "read", the function only reads the Mplus output files. If "gather", the
+#' function will gather standardized parameter estimates by assuming that "read"
+#' method has been executed previously and the R objects are in the Global
+#' Environment. If "all", the function will first read the results from Mplus
+#' output files and gather the standardized parameter estimates.
 #' @return It will return a table with all standardized parameter estimates
 #' obtained by a particular estimator for all replications and conditions.
 #'
@@ -21,9 +30,12 @@
 #'	est_folder <- c("ULSMV_delta")
 #'	cell_prefix <- "U"
 #'
-#'	ulsmv_est <- gather_mplus_output(nfolders = length(cell_folders),
+#'	ulsmv_est <- gather_mplus_output(main_dir = main_dir2,
+#'	                                 cell_folders = cell_folders,
+#'	                                 est_folders = "ULSMV_delta",
 #'	                                 nreps = 5,
-#'	                                 cell_prefix = "U")
+#'	                                 cell_prefix = "U",
+#'	                                 methods = "gather")
 
 gather_mplus_output <- function(main_dir,
                                 cell_folders,
