@@ -54,6 +54,7 @@ if(methods == "read"){
       cell_name <- paste0(cell_prefix, cfolder_index)
       message("Reading output in cell name: ", cell_name)
       message("Start Time: ", Sys.time())
+      est_folder_path <- paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index])
       assign(cell_name,
              readModels(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
                         recursive=FALSE, what = "all", quiet = FALSE))
@@ -109,6 +110,7 @@ if(methods=="all"){
       cell_name <- paste0(cell_prefix, cfolder_index)
       message("Reading output in cell name: ", cell_name)
       message("Start Time: ", Sys.time())
+      est_folder_path <- paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index])
       assign(cell_name,
              readModels(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
                         recursive=FALSE, what = "all", quiet = FALSE))
