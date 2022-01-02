@@ -1,11 +1,10 @@
-------Begin Mplus Model Run: 01Jan2022 23:56:18------
+------Begin Mplus Model Run: 02Jan2022 00:02:28------
 Run options:
 	Recursive (run models in subdirectories): FALSE
 	Show output on console: FALSE
 	Replace existing outfile: always
 ------
-Currently running model: ULSMV_delta_rep1.inp
-Currently running model: ULSMV_delta_rep2.inp
-Currently running model: ULSMV_delta_rep3.inp
-Currently running model: ULSMV_delta_rep4.inp
+Currently running model: ML_probit_rep1.inp
+Currently running model: ML_probit_rep2.inp
+Currently running model: ML_probit_rep3.inp
 Run terminated abnormally

@@ -11,11 +11,12 @@
 #' @param nreps It is the total of replications for a conditions/cell.
 #' @param cell_prefix It is prefix given to an R object. The function will add
 #' a number after it to make an object name for a study condition (e.g., U1).
-#' @param methods There are two options: "gather" and "all". If "gather", the
+#' @param methods There are three options: "read", "gather" and "all". If "read",
+#' Mmplus output files and saves it one object in its cell/condition folder. If "gather", the
 #' function will gather standardized parameter estimates by assuming that "read"
 #' method has been executed previously and the R objects are in the Global
 #' Environment. If "all", the function will first read the results from Mplus
-#' output files and gather the standardized parameter estimates.
+#' output files, save the object in its folder, and gather the standardized parameter estimates.
 #' @return It will return a table with all standardized parameter estimates
 #' obtained by a particular estimator for all replications and conditions.
 #'
@@ -29,8 +30,8 @@
 #'	est_folder <- c("ULSMV_delta")
 #'	cell_prefix <- "U"
 #'
-#'	ulsmv_est <- gather_mplus_output(main_dir = main_dir2,
-#'	                                 cell_folders = cell_folders,
+#'	ulsmv_est <- gather_mplus_output(main_dir = ,
+#'	                                 cell_folders = cemain_dir2ll_folders,
 #'	                                 est_folder = "ULSMV_delta",
 #'	                                 nreps = 5,
 #'	                                 cell_prefix = "U",
@@ -42,28 +43,36 @@ gather_mplus_output <- function(main_dir,
                                 cell_prefix,
                                 nreps,
                                 methods){
-  # Declare variables
 
-parms_allreps <- NULL # for storing all parameters for all estimators
-NFOLDERS <- length(cell_folders)
-MAXR <- nreps
-#
-# if(methods == "read"){
-#   # 1-Read Mplus output for all cells for ONE estimator to R ####
-#   for(est_index in 1:length(est_folder)){
-#     for(cfolder_index in 1:length(cell_folders)){
-#       cell_name <- paste0(cell_prefix, cfolder_index)
-#       message("Reading output in cell name: ", cell_name)
-#       message("Start Time: ", Sys.time())
-#       assign(cell_name,
-#              readModels(paste0(main_dir2, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
-#                         recursive=FALSE, what = "all", quiet = FALSE))
-#
-#       message("End Time: ", Sys.time())
-#     } # end iterations for cell folders
-#   } # end iterations for estimators
-#
-# }
+
+
+
+if(methods == "read"){
+  # 1-Read Mplus output for all cells for ONE estimator to R ####
+  for(est_index in 1:length(est_folder)){
+    for(cfolder_index in 1:length(cell_folders)){
+      cell_name <- paste0(cell_prefix, cfolder_index)
+      message("Reading output in cell name: ", cell_name)
+      message("Start Time: ", Sys.time())
+      assign(cell_name,
+             readModels(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
+                        recursive=FALSE, what = "all", quiet = FALSE))
+      # Save R output in respected folder
+      save(list = cell_name,
+           file = paste0(est_folder_path, "/", cell_name,  ".Rdata"))
+      # render a message about time
+      message("End Time: ", Sys.time())
+
+      # load objects
+      load(paste0(est_folder_path, "/", cell_name,  ".Rdata"))
+    } # end iterations for cell folders
+  } # end iterations for estimators
+} # end methods = "read"
+
+  # Declare variables
+  parms_allreps <- NULL # for storing all parameters for all estimators
+  NFOLDERS <- length(cell_folders)
+  MAXR <- nreps
 
 if(methods == "gather"){
 # 2-read and organize output ####
@@ -84,7 +93,14 @@ for(cfolder_index in 1:NFOLDERS){
 
   } # end replication iteration
 } # end folder iteration
-}
+  # return object here
+  if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
+    message("The number of observations is correct.")
+  } else {
+    print("The number of observations is not equal for all cells.")
+  }
+  return(parms_allreps)
+} # end methods = "gather"
 
 if(methods=="all"){
   # 1-Read Mplus output for all cells for ONE estimator to R ####
@@ -94,10 +110,15 @@ if(methods=="all"){
       message("Reading output in cell name: ", cell_name)
       message("Start Time: ", Sys.time())
       assign(cell_name,
-             readModels(paste0(main_dir2, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
+             readModels(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index]),
                         recursive=FALSE, what = "all", quiet = FALSE))
-
+      # Save R output in respected folder
+      save(list = cell_name,
+           file = paste0(est_folder_path, "/", cell_name,  ".Rdata"))
+      # Render a message about time
       message("End Time: ", Sys.time())
+      # load objects
+      load(paste0(est_folder_path, "/", cell_name,  ".Rdata"))
     } # end iterations for cell folders
   } # end iterations for estimators
 
@@ -119,16 +140,14 @@ if(methods=="all"){
 
     } # end replication iteration
   } # end folder iteration
-
-
-}
-
-if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
-  message("The number of observations is correct.")
-} else {
-  print("The number of observations is not equal for all cells.")
-}
-return(parms_allreps)
-}
+  # return objects here
+  if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
+    message("The number of observations is correct.")
+  } else {
+    print("The number of observations is not equal for all cells.")
+  }
+  return(parms_allreps)
+} # end methods = "all"
+} # end function
 
 
