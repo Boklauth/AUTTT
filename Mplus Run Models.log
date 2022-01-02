@@ -1,4 +1,4 @@
-------Begin Mplus Model Run: 01Jan2022 23:28:42------
+------Begin Mplus Model Run: 01Jan2022 23:42:55------
 Run options:
 	Recursive (run models in subdirectories): FALSE
 	Show output on console: FALSE
@@ -10,4 +10,4 @@ Currently running model: ULSMV_delta_rep3.inp
 Currently running model: ULSMV_delta_rep4.inp
 Currently running model: ULSMV_delta_rep5.inp
 
-------End Mplus Model Run: 01Jan2022 23:28:47------
+------End Mplus Model Run: 01Jan2022 23:42:59------
