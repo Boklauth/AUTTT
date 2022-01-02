@@ -64,8 +64,6 @@ if(methods == "read"){
       # render a message about time
       message("End Time: ", Sys.time())
 
-      # load objects
-      load(paste0(est_folder_path, "/", cell_name,  ".Rdata"))
     } # end iterations for cell folders
   } # end iterations for estimators
 } # end methods = "read"
@@ -119,8 +117,7 @@ if(methods=="all"){
            file = paste0(est_folder_path, "/", cell_name,  ".Rdata"))
       # Render a message about time
       message("End Time: ", Sys.time())
-      # load objects
-      load(paste0(est_folder_path, "/", cell_name,  ".Rdata"))
+
     } # end iterations for cell folders
   } # end iterations for estimators
 
