@@ -113,7 +113,7 @@ mplus_montecarlo_analysis_grm2 <- function(
   vloadings <- model_object$model_spec$vloadings
 
   naming_data_files <- model_object$model_spec$naming_data_files
-  file_name <- model_object$model_spec$file_name
+  # file_name <- model_object$model_spec$file_name
   # model directory or a new directory for creating mplus scripts
   if(is.null(use_new_dir)){
     file_dir <- model_object$model_spec$file_dir
@@ -733,7 +733,6 @@ mplus_montecarlo_analysis_grm2 <- function(
 
           if (isTRUE(run_files)){ # run the input file
             message(paste0("Executing: ", filename_obj))
-            message(paste0(filename, "..."))
             MplusAutomation::runModels(filename_obj)
             message(paste0("Done"))
           }
