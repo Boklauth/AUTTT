@@ -25,10 +25,10 @@ a data generation stage.
 library(AUTTT)
 
 source_main_dir <- "C:/Users/shh6304/Desktop/test3"
-# dest_main_dir does not exist and will be created. 
+# dest_main_dir does not exist and will be created.
 # Folders and files in "test3" will be cloned.
 dest_main_dir <- "C:/Users/shh6304/OneDrive - Western Michigan University/test3"
 
-copy_data_folder(source_main_dir = "C:/Users/shh6304/Desktop/test3", 
+copy_data_folder(source_main_dir = "C:/Users/shh6304/Desktop/test3",
                  dest_main_dir = "C:/Users/shh6304/OneDrive - Western Michigan University/test3")
 }
