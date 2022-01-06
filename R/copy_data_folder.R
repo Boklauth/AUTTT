@@ -50,11 +50,14 @@ copy_data_folder <- function(source_main_dir,
       message("Creating destination directory")
       dir.create(dest_subdir)
     }
-
+    # in the main folder
+    folders_Rdata <- dir(source_main_dir, "*.Rdata", ignore.case = TRUE, all.files = TRUE)
+    # in the sub folders
     dataFiles_Rdata <- dir(source_subdir, "*.Rdata", ignore.case = TRUE, all.files = TRUE)
     dataFiles_dat <- dir(source_subdir, "*.dat", ignore.case = TRUE, all.files = TRUE)
     # copy files
     message("Copying files...")
+    file.copy(file.path(source_subdir, folders_Rdata), dest_subdir, overwrite = TRUE)
     file.copy(file.path(source_subdir, dataFiles_Rdata), dest_subdir, overwrite = TRUE)
     file.copy(file.path(source_subdir, dataFiles_dat), dest_subdir, overwrite = TRUE)
 
