@@ -57,7 +57,7 @@ copy_data_folder <- function(source_main_dir,
     dataFiles_dat <- dir(source_subdir, "*.dat", ignore.case = TRUE, all.files = TRUE)
     # copy files
     message("Copying files...")
-    file.copy(file.path(source_subdir, folders_Rdata), dest_subdir, overwrite = TRUE)
+    file.copy(file.path(source_main_dir, folders_Rdata), dest_main_dir, overwrite = TRUE)
     file.copy(file.path(source_subdir, dataFiles_Rdata), dest_subdir, overwrite = TRUE)
     file.copy(file.path(source_subdir, dataFiles_dat), dest_subdir, overwrite = TRUE)
 
