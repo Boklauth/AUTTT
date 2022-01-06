@@ -44,7 +44,7 @@ copy_data_folder <- function(source_main_dir,
     message(paste0("Source directory: ", source_subdir))
 
     dest_subdir <- paste0(dest_main_dir, "/", folders[i])
-    message(paste0("Destination directory: ", source_subdir))
+    message(paste0("Destination directory: ", dest_subdir))
 
     if(!dir.exists(dest_subdir)){
       message("Creating destination directory")
