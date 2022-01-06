@@ -6,6 +6,7 @@
 \usage{
 mplus_montecarlo_analysis_grm2(
   model_object,
+  use_new_dir = NULL,
   estimators,
   rep,
   type_montecarlo,

@@ -39,10 +39,10 @@ main_dir2 <- "C:/Users/shh6304/Desktop/test6"
 load(paste0(main_dir2, "/folders.Rdata"))
 cell_folders <- folders
 est_folder <- c("ULSMV_delta")
-execute_mplus_scripts(main_dir = main_dir2, 
-                     cell_folders = cell_folders, 
-                     est_folders = ULSMV_delta, 
-                     start_condition = 1, 
+execute_mplus_scripts(main_dir = main_dir2,
+                     cell_folders = cell_folders,
+                     est_folders = ULSMV_delta,
+                     start_condition = 1,
                      end_condition = length(cell_folders))
-                     
+
 }

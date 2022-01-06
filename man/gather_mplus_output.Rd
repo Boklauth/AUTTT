@@ -25,12 +25,12 @@ a number after it to make an object name for a study condition (e.g., U1).}
 
 \item{nreps}{It is the total of replications for a conditions/cell.}
 
-\item{methods}{There are three options: "read", "gather", and "all". If it
-is "read", the function only reads the Mplus output files. If "gather", the
+\item{methods}{There are three options: "read", "gather" and "all". If "read",
+Mmplus output files and saves it one object in its cell/condition folder. If "gather", the
 function will gather standardized parameter estimates by assuming that "read"
 method has been executed previously and the R objects are in the Global
 Environment. If "all", the function will first read the results from Mplus
-output files and gather the standardized parameter estimates.}
+output files, save the object in its folder, and gather the standardized parameter estimates.}
 
 \item{est_folders}{It is the folder name(s), where Mplus scripts are created and
 stored using the function mplus_montecarlo_analysis_grm2().}
@@ -52,10 +52,10 @@ cell_folders <- folders
 est_folder <- c("ULSMV_delta")
 cell_prefix <- "U"
 
-ulsmv_est <- gather_mplus_output(main_dir = main_dir2,
-                                 cell_folders = cell_folders,
-                                 est_folders = "ULSMV_delta",
+ulsmv_est <- gather_mplus_output(main_dir = ,
+                                 cell_folders = cemain_dir2ll_folders,
+                                 est_folder = "ULSMV_delta",
                                  nreps = 5,
                                  cell_prefix = "U",
-                                 methods = "gather")
+                                 methods = "all")
 }
