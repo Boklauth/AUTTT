@@ -8,6 +8,8 @@
 #'
 #' @param main_dir2 This is the main directory in which folders representing
 #' study conditions and data sets for the conditions are stored.
+#' @param folder_index This takes one or more numeric values and contain the index
+#' numbers of the study conditions.
 #' @param nReps This is the total number of replications. The function will
 #' develop and execute the scripts one by one.
 #'
@@ -29,13 +31,15 @@
 #' main_dir2 <- "C:/Users/shh6304/Desktop/t8"
 
 #' execute_ML_probit(main_dir2 = "C:/Users/shh6304/Desktop/t8",
+#'                   folder_index = C(1,2),
 #'                    nReps = 500)
 
 execute_ML_probit <- function(main_dir2,
+                              folder_index,
                               nReps){
 
 # declare variable
-new_dir <- main_dir2
+
 
 if(dir.exists(main_dir2)){
   setwd(main_dir2)
@@ -48,8 +52,8 @@ load(paste0(getwd(), "/folders.Rdata"))
 # check folders
 folders[1:24]
 
-nReps <- 5
-for(i in 12:12){ # specify a number range or numbers to select a condition
+
+for(i in folder_index){ # specify a number range or numbers to select a condition
   message(paste0("Loading data model from: ", folders[i]))
   load(paste0(main_dir2, "/", folders[i], "/study_cell.Rdata"))
   message("Creating Mplus scripts in: ")
@@ -66,7 +70,7 @@ for(i in 12:12){ # specify a number range or numbers to select a condition
   for (r in 1:nReps){
     time1 <- Sys.time() # time stamp
     mplus_montecarlo_analysis_grm2(model_object = study_cell,
-                                   use_new_dir = new_dir,
+                                   use_new_dir = my_new_dir,
                                    estimators = c("ML_probit"),
                                    rep = r,
                                    type_montecarlo = FALSE,
