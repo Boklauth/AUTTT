@@ -1,4 +1,29 @@
-
+#'Execute Mplus Input Files Using Estimator Maximum Likelihood with the Probit Model
+#'
+#' The function executes Mplus scripts (.inp) in the background, and the estimator
+#' is maximum likelihood with the probit model. The other data required are "folders.Rdata",
+#' which contains the study conditions and is created during the data generation
+#' process; "study_cell.Rdata", which contains the data sets of all replications
+#' for each condition.
+#'
+#' @param main_dir2 This is the main directory in which folders representing
+#' study conditions and data sets for the conditions are stored.
+#' @param nReps This is the total number of replications. The function will
+#' develop and execute the scripts one by one.
+#'
+#' @export
+#' @examples
+#' library(AUTTT)
+#'
+#'	main_dir2 <- "C:/Users/shh6304/Desktop/test6"
+#'	# load folders
+#'	load(paste0(main_dir2, "/folders.Rdata"))
+#'	# study_cell.Rdata will be searched in each study condition folder
+#'	# once it finds the condition folders.
+#'	est_folder <- c("ULSMV_delta")
+#' execute_ML_probit(main_dir2 = main_dir2,
+#'                  nReps = 500)
+#'
 # 3 Write Mplus Scripts and Analyze data using ML Probit ####
 
 #' main_dir2 <- "C:/Users/shh6304/Desktop/t8"
