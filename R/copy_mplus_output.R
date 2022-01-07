@@ -40,9 +40,9 @@ if(!dir.exists(dest_main_dir)){
 
   # create dest. condition folders conditional on existence of source condition folders
     for (i in 1:length(folders)){
-    if(dir.exists(paste0(source_main_dir, "/", folders[i]))){
-    dir.create(paste0(dest_main_dir, "/", folders[i]))
-    }
+      if(dir.exists(paste0(source_main_dir, "/", folders[i])) & !dir.exists(paste0(dest_main_dir, "/", folders[i]))){
+        dir.create(paste0(dest_main_dir, "/", folders[i]))
+      }
     }
 
 
