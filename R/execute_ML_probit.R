@@ -10,8 +10,9 @@
 #' study conditions and data sets for the conditions are stored.
 #' @param folder_index This takes one or more numeric values and contain the index
 #' numbers of the study conditions.
-#' @param nReps This is the total number of replications. The function will
-#' develop and execute the scripts one by one.
+#' @param Reps This is the replications. It can be specified as, for example,
+#' C(1, 2, 3, 4, 5) or 1:5. The function will develop and execute the scripts one
+#' by one based on the replication numbers.
 #'
 #' @export
 #' @examples
@@ -36,7 +37,7 @@
 
 execute_ML_probit <- function(main_dir2,
                               folder_index,
-                              nReps){
+                              Reps){
 
 # declare variable
 
@@ -65,7 +66,7 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
   # write and/or execute Mplus scripts
 
 
-  for (r in 1:nReps){
+  for (r in Reps){
     time1 <- Sys.time() # time stamp
     mplus_montecarlo_analysis_grm2(model_object = study_cell,
                                    use_new_dir = my_new_dir,
