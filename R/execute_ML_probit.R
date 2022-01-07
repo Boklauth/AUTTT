@@ -54,11 +54,10 @@ if(dir.exists(main_dir2)){
 for(i in folder_index){ # specify a number range or numbers to select a condition
   message(paste0("Loading data model from: ", folders[i]))
   load(paste0(main_dir2, "/", folders[i], "/study_cell.Rdata"))
-  message("Creating Mplus scripts in: ")
   # supply a new directory here
   my_new_dir <- paste0(main_dir2, "/", folders[i])
   # message
-  message("Selected condition:")
+  message("Creating Mplus scripts in: ")
   message(my_new_dir)
   start_time <- Sys.time()
   message("Start time: ", start_time)
@@ -75,7 +74,9 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
                                    type_montecarlo = FALSE,
                                    run_files = TRUE)
     # message per replication
+    message(paste0("Time1: ", time1))
     time2 <- Sys.time()
+    message(paste0("Time2: ", time2))
     message("duration: ")
     time_diff <- time2 - time1
     message(time_diff)
