@@ -1,6 +1,6 @@
 Package: AUTTT
 Title: A Unified Treatment in Test Theory
-Version: 1.1.2
+Version: 1.1.3
 Authors@R:
   person(given = "Bo",
          family = "Klauth",
