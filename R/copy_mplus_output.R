@@ -34,9 +34,14 @@ copy_mplus_output <- function(source_main_dir,
   # load folders
   load(paste0(source_main_dir, "/folders.Rdata"))
 # create destination main folder if not exist
+
 if(!dir.exists(dest_main_dir)){
   dir.create(dest_main_dir)
+  for (i in 1:length(folders)){
+    dir.create(paste0(dest_main_dir, "/", folders[i]))
+  }
 }
+
 est_folder <- output_folder
 
 for(i in 1:length(folders)){
