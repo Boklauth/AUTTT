@@ -79,7 +79,7 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
     message(paste0("Time2: ", time2))
     message("duration: ")
     time_diff <- time2 - time1
-    message(time_diff)
+    print(time_diff)
     message(".....................")
   }
   # end of script writing and execution
@@ -87,7 +87,7 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
   end_time <- Sys.time()
   message("End time: ", end_time)
   message("Total duration:")
-  message(end_time - start_time)
+  print(end_time - start_time)
 }
 } # end function
 
