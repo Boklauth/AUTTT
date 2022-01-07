@@ -43,14 +43,12 @@ execute_ML_probit <- function(main_dir2,
 
 if(dir.exists(main_dir2)){
   setwd(main_dir2)
+  # load folders
+  load(paste0(getwd(), "/folders.Rdata"))
 }else {
-  dir.create(main_dir2)
-  setwd(main_dir2)
+  message(paste0(main_dir2, " does not exist. Please check the directory."))
 }
-# load folders
-load(paste0(getwd(), "/folders.Rdata"))
-# check folders
-folders[1:24]
+
 
 
 for(i in folder_index){ # specify a number range or numbers to select a condition
@@ -59,8 +57,9 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
   message("Creating Mplus scripts in: ")
   # supply a new directory here
   my_new_dir <- paste0(main_dir2, "/", folders[i])
-  print(my_new_dir)
   # message
+  message("Selected condition:")
+  message(my_new_dir)
   start_time <- Sys.time()
   message("Start time: ", start_time)
 
@@ -79,7 +78,7 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
     time2 <- Sys.time()
     message("duration: ")
     time_diff <- time2 - time1
-    time_diff
+    message(time_diff)
     message(".....................")
   }
   # end of script writing and execution
@@ -87,7 +86,7 @@ for(i in folder_index){ # specify a number range or numbers to select a conditio
   end_time <- Sys.time()
   message("End time: ", end_time)
   message("Total duration:")
-  end_time - start_time
+  message(end_time - start_time)
 }
 } # end function
 
