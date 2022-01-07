@@ -56,7 +56,8 @@ for(i in 1:length(folders)){
   dest_subdir <- paste0(dest_main_dir, "/", folders[i], "/", est_folder)
   message(paste0("Destination directory: ", dest_subdir))
 
-  if(dir.exists(source_subdir)){
+  # conditional copying
+  if(dir.exists(source_subdir) & !dir.exists(dest_subdir)){
     message("Creating destination directory")
     dir.create(dest_subdir)
   }
