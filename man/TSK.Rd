@@ -13,6 +13,9 @@ TSK(n, res_prop)
 }
 \value{
 TSK will return threshold values and corresponding response probabilities and cumulative probabilities.
+It will also return skewness and kurtosis values. Kurt1 uses the regular formula of kurtosis
+but it subtract the value with -3. Kurt2 is the original value.
+Kurt3 uses formula found in Sheskin (2000).
 }
 \description{
 This package contains the TSK function {TSK()},
@@ -37,4 +40,6 @@ TSK(n = 1200, res_prop = res.prop)
 \insertRef{Kline2015}{AUTTT}
 
 \insertRef{McDonald1999}{AUTTT}
+
+\insertRef{UCLA}{AUTTT}
 }

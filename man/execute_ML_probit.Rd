@@ -4,14 +4,18 @@
 \alias{execute_ML_probit}
 \title{Execute Mplus Input Files Using Estimator Maximum Likelihood with the Probit Model}
 \usage{
-execute_ML_probit(main_dir2, nReps)
+execute_ML_probit(main_dir2, folder_index, Reps)
 }
 \arguments{
 \item{main_dir2}{This is the main directory in which folders representing
 study conditions and data sets for the conditions are stored.}
 
-\item{nReps}{This is the total number of replications. The function will
-develop and execute the scripts one by one.}
+\item{folder_index}{This takes one or more numeric values and contain the index
+numbers of the study conditions.}
+
+\item{Reps}{This is the replications. It can be specified as, for example,
+C(1, 2, 3, 4, 5) or 1:5. The function will develop and execute the scripts one
+by one based on the replication numbers.}
 }
 \description{
 The function executes Mplus scripts (.inp) in the background, and the estimator
@@ -34,5 +38,6 @@ execute_ML_probit(main_dir2 = main_dir2,
 
 main_dir2 <- "C:/Users/shh6304/Desktop/t8"
 execute_ML_probit(main_dir2 = "C:/Users/shh6304/Desktop/t8",
+                  folder_index = C(1,2),
                    nReps = 500)
 }

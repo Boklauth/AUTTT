@@ -16,6 +16,12 @@ mplus_montecarlo_analysis_grm2(
 \arguments{
 \item{model_object}{A set of model specifications that can be passed from the function mplus_montecarlo_data() or simdata_grm().}
 
+\item{use_new_dir}{If NULL, the recorded directory given by the model_object is used.
+Otherwise, a new main directory is needed for writing Mplus input scripts. The scripts
+will use the new directory to access the data sets. A new directory is useful
+when the folder containing conditions and data sets are analyzed on different computers
+having different directories for data sets.}
+
 \item{estimators}{A list of estimators. Available estimators are: c('ML', 'MLR', 'MLF',
 'ML_logit',
 'ML_probit',

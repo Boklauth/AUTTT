@@ -4,7 +4,7 @@
 \alias{copy_mplus_output}
 \title{A Function to Copy the Data Folder}
 \usage{
-copy_mplus_output(source_main_dir, dest_main_dir)
+copy_mplus_output(source_main_dir, dest_main_dir, output_folder)
 }
 \arguments{
 \item{source_main_dir}{It is a main directory, where the study condition folders,
@@ -28,11 +28,11 @@ a data generation stage.
 library(AUTTT)
 
 source_main_dir <- "C:/Users/shh6304/Desktop/test3"
-# dest_main_dir does not exist and will be created. 
+# dest_main_dir does not exist and will be created.
 # Folders and files in "test3" will be cloned.
 dest_main_dir <- "C:/Users/shh6304/OneDrive - Western Michigan University/test3"
 
-copy_mplus_output(source_main_dir = "C:/Users/shh6304/Desktop/test3", 
-                 dest_main_dir = "C:/Users/shh6304/OneDrive - Western Michigan University/test3", 
+copy_mplus_output(source_main_dir = "C:/Users/shh6304/Desktop/test3",
+                 dest_main_dir = "C:/Users/shh6304/OneDrive - Western Michigan University/test3",
                  output_folder = "ML_probit")
 }
