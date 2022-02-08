@@ -1,10 +1,8 @@
-------Begin Mplus Model Run: 02Jan2022 00:02:28------
+------Begin Mplus Model Run: 05Feb2022 15:33:38------
 Run options:
 	Recursive (run models in subdirectories): FALSE
 	Show output on console: FALSE
 	Replace existing outfile: always
 ------
 Currently running model: ML_probit_rep1.inp
-Currently running model: ML_probit_rep2.inp
-Currently running model: ML_probit_rep3.inp
 Run terminated abnormally

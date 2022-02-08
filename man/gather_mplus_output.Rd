@@ -25,8 +25,8 @@ a number after it to make an object name for a study condition (e.g., U1).}
 
 \item{nreps}{It is the total of replications for a conditions/cell.}
 
-\item{methods}{There are three options: "read", "gather" and "all". If "read",
-Mmplus output files and saves it one object in its cell/condition folder. If "gather", the
+\item{methods}{There are three options: "read", "gather" and "all". If "read",it will read
+Mplus output files and saves it as an object in its cell/condition folder. If "gather", the
 function will gather standardized parameter estimates by assuming that "read"
 method has been executed previously and the R objects are in the Global
 Environment. If "all", the function will first read the results from Mplus

@@ -11,8 +11,8 @@
 #' @param nreps It is the total of replications for a conditions/cell.
 #' @param cell_prefix It is prefix given to an R object. The function will add
 #' a number after it to make an object name for a study condition (e.g., U1).
-#' @param methods There are three options: "read", "gather" and "all". If "read",
-#' Mmplus output files and saves it one object in its cell/condition folder. If "gather", the
+#' @param methods There are three options: "read", "gather" and "all". If "read",it will read
+#' Mplus output files and saves it as an object in its cell/condition folder. If "gather", the
 #' function will gather standardized parameter estimates by assuming that "read"
 #' method has been executed previously and the R objects are in the Global
 #' Environment. If "all", the function will first read the results from Mplus
@@ -83,12 +83,19 @@ for(cfolder_index in 1:NFOLDERS){
     file_name <- paste0(file_prefix, "_rep", R, ".out")
     cell_name <- paste0(cell_prefix, cfolder_index)
     parms <- get(cell_name)[[file_name]][["parameters"]][["stdyx.standardized"]]
-    folder = cell_folders[cfolder_index]
-    cell = cfolder_index
-    rep = R
-    estimator = est_folder[est_index]
-    parms_onerep <- cbind(folder, cell, rep, estimator, parms)
-    parms_allreps <- rbind(parms_allreps, parms_onerep)
+    # in case, nonconvergence
+    if(is.null(parms)){
+      message(paste0(file_name, " not converged."))
+      not_converge_log <- c(not_converge_log, file_name)
+      } else {
+      folder = cell_folders[cfolder_index]
+      cell = cfolder_index
+      rep = R
+      estimator = est_folder[est_index]
+      parms_onerep <- cbind(folder, cell, rep, estimator,
+                            parms)
+      parms_allreps <- rbind(parms_allreps, parms_onerep)
+    }
 
   } # end replication iteration
 } # end folder iteration
@@ -97,6 +104,8 @@ for(cfolder_index in 1:NFOLDERS){
     message("The number of observations is correct.")
   } else {
     print("The number of observations is not equal for all cells.")
+    print("Some replicates were not converged.")
+    print(not_converge_log)
   }
   return(parms_allreps)
 } # end methods = "gather"
@@ -131,13 +140,19 @@ if(methods=="all"){
       file_name <- paste0(file_prefix, "_rep", R, ".out")
       cell_name <- paste0(cell_prefix, cfolder_index)
       parms <- get(cell_name)[[file_name]][["parameters"]][["stdyx.standardized"]]
-      folder = cell_folders[cfolder_index]
-      cell = cfolder_index
-      rep = R
-      estimator = est_folder[est_index]
-      parms_onerep <- cbind(folder, cell, rep, estimator, parms)
-      parms_allreps <- rbind(parms_allreps, parms_onerep)
-
+      # in case, nonconvergence
+      if(is.null(parms)){
+        message(paste0(file_name, " not converged."))
+        not_converge_log <- c(not_converge_log, file_name)
+       } else {
+          folder = cell_folders[cfolder_index]
+          cell = cfolder_index
+          rep = R
+          estimator = est_folder[est_index]
+          parms_onerep <- cbind(folder, cell, rep, estimator,
+                                parms)
+          parms_allreps <- rbind(parms_allreps, parms_onerep)
+        }
     } # end replication iteration
   } # end folder iteration
   # return objects here
@@ -145,8 +160,13 @@ if(methods=="all"){
     message("The number of observations is correct.")
   } else {
     print("The number of observations is not equal for all cells.")
+    print("Some replicates were not converged.")
+    print(not_converge_log)
+    write.csv(not_converge_log,
+              file = paste0(est_folder_path, "/not_converge_log.csv"))
+
   }
-  return(parms_allreps)
+  return(list(parms_allreps, not_converge_log))
 } # end methods = "all"
 } # end function
 
