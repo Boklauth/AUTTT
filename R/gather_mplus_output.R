@@ -45,7 +45,8 @@ gather_mplus_output <- function(main_dir,
                                 methods){
 
 
-
+# declare variable
+  not_converge_log <- NULL
 
 if(methods == "read"){
   # 1-Read Mplus output for all cells for ONE estimator to R ####
@@ -75,8 +76,10 @@ if(methods == "read"){
 
 if(methods == "gather"){
 # 2-read and organize output ####
+  est_index <- 1
 for(cfolder_index in 1:NFOLDERS){
-  for(R in 1:MAXR){
+  # for(R in 1:MAXR){
+    for(R in 455:457){
     # declare variables
     cell_id <- paste0("cell", cfolder_index)
     file_prefix <- tolower(est_folder[est_index])
@@ -86,7 +89,7 @@ for(cfolder_index in 1:NFOLDERS){
     # in case, nonconvergence
     if(is.null(parms)){
       message(paste0(file_name, " not converged."))
-      not_converge_log <- c(not_converge_log, file_name)
+      not_converge_log <- rbind(not_converge_log, file_name)
       } else {
       folder = cell_folders[cfolder_index]
       cell = cfolder_index
