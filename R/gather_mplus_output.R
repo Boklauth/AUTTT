@@ -78,8 +78,7 @@ if(methods == "gather"){
 # 2-read and organize output ####
   est_index <- 1
 for(cfolder_index in 1:NFOLDERS){
-  # for(R in 1:MAXR){
-    for(R in 455:457){
+  for(R in 1:MAXR){
     # declare variables
     cell_id <- paste0("cell", cfolder_index)
     file_prefix <- tolower(est_folder[est_index])
@@ -106,9 +105,9 @@ for(cfolder_index in 1:NFOLDERS){
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
     message("The number of observations is correct.")
   } else {
-    print("The number of observations is not equal for all cells.")
-    print("Some replicates were not converged.")
-    print(not_converge_log)
+    message("The number of observations is not equal for all cells.")
+    message("Some replicates were not converged:")
+    message(not_converge_log)
   }
   return(parms_allreps)
 } # end methods = "gather"
