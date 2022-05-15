@@ -11,6 +11,8 @@
 #' @param nreps It is the total of replications for a conditions/cell.
 #' @param cell_prefix It is prefix given to an R object. The function will add
 #' a number after it to make an object name for a study condition (e.g., U1).
+#' @param start_cell This is an integer value specifying the start cell/condition of the study.
+#' @param end_cell This is an integer value specifying the final cell/condition of the study.
 #' @param methods There are three options: "read", "gather" and "all". If "read",it will read
 #' Mplus output files and saves it as an object in its cell/condition folder. If "gather", the
 #' function will gather standardized parameter estimates by assuming that "read"
@@ -35,12 +37,16 @@
 #'	                                 est_folder = "ULSMV_delta",
 #'	                                 nreps = 5,
 #'	                                 cell_prefix = "U",
+#'	                                 start_cell = 1,
+#'	                                 end_cell = 12,
 #'	                                 methods = "all")
 
 gather_mplus_output <- function(main_dir,
                                 cell_folders,
                                 est_folder,
                                 cell_prefix,
+                                start_cell,
+                                end_cell,
                                 nreps,
                                 methods){
 
@@ -51,7 +57,7 @@ gather_mplus_output <- function(main_dir,
 if(methods == "read"){
   # 1-Read Mplus output for all cells for ONE estimator to R ####
   for(est_index in 1:length(est_folder)){
-    for(cfolder_index in 1:length(cell_folders)){
+    for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
       cell_name <- paste0(cell_prefix, cfolder_index)
       message("Reading output in cell name: ", cell_name)
       message("Start Time: ", Sys.time())
@@ -69,15 +75,16 @@ if(methods == "read"){
   } # end iterations for estimators
 } # end methods = "read"
 
-  # Declare variables
+  # Declare variables for method "gather" and "all"
   parms_allreps <- NULL # for storing all parameters for all estimators
-  NFOLDERS <- length(cell_folders)
+  NFOLDERS <- end_cell - start_cell + 1 # total numbe rof cell
   MAXR <- nreps
+  # end declaring variables
 
 if(methods == "gather"){
 # 2-read and organize output ####
   est_index <- 1
-for(cfolder_index in 1:NFOLDERS){
+for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
   for(R in 1:MAXR){
     # declare variables
     cell_id <- paste0("cell", cfolder_index)
@@ -115,7 +122,7 @@ for(cfolder_index in 1:NFOLDERS){
 if(methods=="all"){
   # 1-Read Mplus output for all cells for ONE estimator to R ####
   for(est_index in 1:length(est_folder)){
-    for(cfolder_index in 1:length(cell_folders)){
+    for(cfolder_index in start_cell:end_cell){ # specify start cell and end cell
       cell_name <- paste0(cell_prefix, cfolder_index)
       message("Reading output in cell name: ", cell_name)
       message("Start Time: ", Sys.time())
@@ -134,7 +141,7 @@ if(methods=="all"){
   } # end iterations for estimators
 
   # 2-read and organize output ####
-  for(cfolder_index in 1:NFOLDERS){
+  for(cfolder_index in start_cell:end_cell){ # specify start cell and end cell
     for(R in 1:MAXR){
       # declare variables
       cell_id <- paste0("cell", cfolder_index)

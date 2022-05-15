@@ -9,6 +9,8 @@ gather_mplus_output(
   cell_folders,
   est_folder,
   cell_prefix,
+  start_cell,
+  end_cell,
   nreps,
   methods
 )
@@ -22,6 +24,10 @@ the experimental conditions/cells.}
 
 \item{cell_prefix}{It is prefix given to an R object. The function will add
 a number after it to make an object name for a study condition (e.g., U1).}
+
+\item{start_cell}{This is an integer value specifying the start cell/condition of the study.}
+
+\item{end_cell}{This is an integer value specifying the final cell/condition of the study.}
 
 \item{nreps}{It is the total of replications for a conditions/cell.}
 
@@ -57,5 +63,7 @@ ulsmv_est <- gather_mplus_output(main_dir = ,
                                  est_folder = "ULSMV_delta",
                                  nreps = 5,
                                  cell_prefix = "U",
+                                 start_cell = 1,
+                                 end_cell = 12,
                                  methods = "all")
 }
