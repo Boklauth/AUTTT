@@ -114,7 +114,10 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
   } else {
     message("The number of observations is not equal for all cells.")
     message("Some replicates were not converged:")
+    message(paste0("Condition:", cell_id))
     message(not_converge_log)
+    write.csv(not_converge_log,
+              file = paste0(est_folder_path, "/not_converge_log.csv"))
   }
   return(parms_allreps)
 } # end methods = "gather"
@@ -168,14 +171,15 @@ if(methods=="all"){
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
     message("The number of observations is correct.")
   } else {
-    print("The number of observations is not equal for all cells.")
-    print("Some replicates were not converged.")
-    print(not_converge_log)
+    message("The number of observations is not equal for all cells.")
+    message("Some replicates were not converged.")
+    message(not_converge_log)
+    message(paste0("Condition:", cell_id))
     write.csv(not_converge_log,
               file = paste0(est_folder_path, "/not_converge_log.csv"))
 
   }
-  return(list(parms_allreps, not_converge_log))
+  return(parms_allreps)
 } # end methods = "all"
 } # end function
 
