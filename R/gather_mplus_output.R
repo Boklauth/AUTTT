@@ -90,7 +90,7 @@ if(methods == "gather"){
 for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
   # load the Rdata object onto the Global environment
   load(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
-              "/", cell_prefix, i))
+              "/", cell_prefix, cfolder_index, ".Rdata"))
   for(R in 1:MAXR){
     # declare variables
     cell_id <- paste0("cell", cfolder_index)
