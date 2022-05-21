@@ -51,8 +51,6 @@ gather_mplus_output <- function(main_dir,
                                 methods){
 
 
-# declare variable
-  not_converge_log <- NULL
 
 if(methods == "read"){
   # 1-Read Mplus output for all cells for ONE estimator to R ####
@@ -91,6 +89,10 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
   # load the Rdata object onto the Global environment
   load(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
               "/", cell_prefix, cfolder_index, ".Rdata"))
+
+  # declare variable
+  not_converge_log <- NULL
+
   for(R in 1:MAXR){
     # declare variables
     cell_id <- paste0("cell", cfolder_index)
@@ -98,10 +100,16 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
     file_name <- paste0(file_prefix, "_rep", R, ".out")
     cell_name <- paste0(cell_prefix, cfolder_index)
     parms <- get(cell_name)[[file_name]][["parameters"]][["stdyx.standardized"]]
+
     # in case, nonconvergence
     if(is.null(parms)){
-      message(paste0(file_name, " not converged."))
-      not_converge_log <- rbind(not_converge_log, file_name)
+      # show which file is not converged
+      dir_of_file <- paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                            "/", file_name)
+      message(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                     "/", file_name))
+      message("was not converged.")
+      not_converge_log <- rbind(not_converge_log, dir_of_file)
       } else {
       folder = cell_folders[cfolder_index]
       cell = cfolder_index
@@ -113,6 +121,10 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
     }
 
   } # end replication iteration
+  # write a not_converge_log for the non-converged replication
+  write.csv(not_converge_log,
+            file = paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                          "/", "not_converge_log.csv"))
 } # end folder iteration
   # return object here
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
@@ -122,8 +134,7 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
     message("Some replicates were not converged:")
     message(paste0("Condition:", cell_id))
     message(not_converge_log)
-    write.csv(not_converge_log,
-              file = paste0(est_folder_path, "/not_converge_log.csv"))
+
   }
   return(parms_allreps)
 } # end methods = "gather"
@@ -151,6 +162,10 @@ if(methods=="all"){
 
   # 2-read and organize output ####
   for(cfolder_index in start_cell:end_cell){ # specify start cell and end cell
+
+    # declare variable
+    not_converge_log <- NULL
+
     for(R in 1:MAXR){
       # declare variables
       cell_id <- paste0("cell", cfolder_index)
@@ -160,8 +175,13 @@ if(methods=="all"){
       parms <- get(cell_name)[[file_name]][["parameters"]][["stdyx.standardized"]]
       # in case, nonconvergence
       if(is.null(parms)){
-        message(paste0(file_name, " not converged."))
-        not_converge_log <- c(not_converge_log, file_name)
+        # show which file is not converged
+        dir_of_file <- paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                              "/", file_name)
+        message(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                       "/", file_name))
+        message("was not converged.")
+        not_converge_log <- rbind(not_converge_log, dir_of_file)
        } else {
           folder = cell_folders[cfolder_index]
           cell = cfolder_index
@@ -172,6 +192,10 @@ if(methods=="all"){
           parms_allreps <- rbind(parms_allreps, parms_onerep)
         }
     } # end replication iteration
+    # write a not_converge_log for the non-converged replication
+    write.csv(not_converge_log,
+              file = paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                            "/", "not_converge_log.csv"))
   } # end folder iteration
   # return objects here
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
