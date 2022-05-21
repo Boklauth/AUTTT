@@ -126,6 +126,8 @@ for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
             file = paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
                           "/", "not_converge_log.csv"))
 } # end folder iteration
+
+
   # return object here
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
     message("The number of observations is correct.")
@@ -160,8 +162,15 @@ if(methods=="all"){
     } # end iterations for cell folders
   } # end iterations for estimators
 
-  # 2-read and organize output ####
-  for(cfolder_index in start_cell:end_cell){ # specify start cell and end cell
+  # 2-organize output after the output files have been read into Rdata  ####
+  est_index <- 1
+
+
+  # gather the output
+  for(cfolder_index in start_cell:end_cell){# specify start cell and end cell
+    # load the Rdata object onto the Global environment
+    load(paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
+                "/", cell_prefix, cfolder_index, ".Rdata"))
 
     # declare variable
     not_converge_log <- NULL
@@ -173,6 +182,7 @@ if(methods=="all"){
       file_name <- paste0(file_prefix, "_rep", R, ".out")
       cell_name <- paste0(cell_prefix, cfolder_index)
       parms <- get(cell_name)[[file_name]][["parameters"]][["stdyx.standardized"]]
+
       # in case, nonconvergence
       if(is.null(parms)){
         # show which file is not converged
@@ -182,31 +192,32 @@ if(methods=="all"){
                        "/", file_name))
         message("was not converged.")
         not_converge_log <- rbind(not_converge_log, dir_of_file)
-       } else {
-          folder = cell_folders[cfolder_index]
-          cell = cfolder_index
-          rep = R
-          estimator = est_folder[est_index]
-          parms_onerep <- cbind(folder, cell, rep, estimator,
-                                parms)
-          parms_allreps <- rbind(parms_allreps, parms_onerep)
-        }
+      } else {
+        folder = cell_folders[cfolder_index]
+        cell = cfolder_index
+        rep = R
+        estimator = est_folder[est_index]
+        parms_onerep <- cbind(folder, cell, rep, estimator,
+                              parms)
+        parms_allreps <- rbind(parms_allreps, parms_onerep)
+      }
+
     } # end replication iteration
     # write a not_converge_log for the non-converged replication
     write.csv(not_converge_log,
               file = paste0(main_dir, "/", cell_folders[cfolder_index], "/", est_folder[est_index],
                             "/", "not_converge_log.csv"))
   } # end folder iteration
-  # return objects here
+
+
+  # return object here
   if(nrow(parms_allreps) == nrow(parms_onerep)*MAXR*NFOLDERS){
     message("The number of observations is correct.")
   } else {
     message("The number of observations is not equal for all cells.")
-    message("Some replicates were not converged.")
-    message(not_converge_log)
+    message("Some replicates were not converged:")
     message(paste0("Condition:", cell_id))
-    write.csv(not_converge_log,
-              file = paste0(est_folder_path, "/not_converge_log.csv"))
+    message(not_converge_log)
 
   }
   return(parms_allreps)
