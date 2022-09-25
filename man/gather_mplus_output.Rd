@@ -34,9 +34,10 @@ a number after it to make an object name for a study condition (e.g., U1).}
 \item{methods}{There are three options: "read", "gather" and "all". If "read",it will read
 Mplus output files and saves it as an object in its cell/condition folder. If "gather", the
 function will gather standardized parameter estimates by assuming that "read"
-method has been executed previously and the R objects are in the Global
-Environment. If "all", the function will first read the results from Mplus
-output files, save the object in its folder, and gather the standardized parameter estimates.}
+method has been executed previously and the R objects are loaded from the
+location specified by the user. If "all", the function will first read the results from Mplus
+output files, save the object in its folder, and gather the standardized parameter estimates.
+It is suggested that you use the method "read" and "gather" later.}
 
 \item{est_folders}{It is the folder name(s), where Mplus scripts are created and
 stored using the function mplus_montecarlo_analysis_grm2().}
