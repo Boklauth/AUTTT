@@ -14,7 +14,6 @@
 #' @param d An p x Cj-1 matrix of the IRT intercept parameters, where Cj is the
 #' total number of category responses. A category response is represented by k,
 #' where k = 1,2,...,Cj.
-#' @param N A numeric value for the  sample size
 #' @param R A numberic value for the total number of replications.
 #' @param method A name for method: "U" and "N". "U" uses a lower-tail
 #' cumulative probability , which is randomly drawn from U(0,1), a uniform
@@ -75,7 +74,6 @@
 #'                      theta_matrix = theta1$scaled.X,
 #'                      a = a_vec,
 #'                      d = d_vec,
-#'                      N = 300,
 #'                      R = 50,
 #'                      method = "U",
 #'                      file_dir = getwd(),
@@ -98,7 +96,6 @@
 #'             theta_matrix = scaled_1f_mvn300,
 #'             a = a_vec,
 #'             d = d_vec,
-#'             N = 300,
 #'             R = 5,
 #'             method = "N",
 #'             file_dir = getwd(),
@@ -150,7 +147,6 @@ simdata_grm2 <- function(model,
                         theta_matrix,
                         a,
                         d,
-                        N,
                         R,
                         method,
                         file_dir,
