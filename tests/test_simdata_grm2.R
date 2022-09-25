@@ -151,6 +151,7 @@ for (theta_index in 1:6){ # theta distributions
                                  file_prefix = "bk",
                                  seed_num = 12345)
 
+
         # 2.2 Save model results
         message(paste0("Saving data model at: ", getwd()))
         save(study_cell, file = paste0(getwd(), "/study_cell.Rdata"))
