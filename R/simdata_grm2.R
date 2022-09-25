@@ -129,7 +129,6 @@
 #'             theta_matrix = unscaled_1f_mvn300,
 #'             a = a_vec,
 #'             d = d_vec,
-#'             N = 300,
 #'             R = 5,
 #'             method = "N",
 #'             file_dir = getwd(),
@@ -157,6 +156,10 @@ simdata_grm2 <- function(model,
   # declare global parameters ####
   theta_values <- theta_matrix
   nTs <- ncol(d) # n of thresholds
+
+  # sample size
+    N <- nrow(theta_matrix)
+
 
   # arrange item discrimination in a p x m form,
   # p = max n. of items, m max n. of factors

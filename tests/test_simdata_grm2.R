@@ -143,7 +143,7 @@ for (theta_index in 1:6){ # theta distributions
                                   theta_matrix = theta_val,
                                   a = a_vec,
                                   d = d,
-                                  # N = sample_size,
+                                  #N = 1,
                                   R = nReps,
                                   method = "U",
                                   file_dir = getwd(),
