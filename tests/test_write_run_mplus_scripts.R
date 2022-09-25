@@ -14,7 +14,7 @@ load(paste0(data_dir, "/folders.Rdata"))
 
 
 my_est <-c('MLR', 'ULSMV_delta', 'WLSMV_delta')
-selected_f <- c(1, 2, 3, 4)
+selected_f <- c(2, 3)
 for (cell in selected_f){
   load(paste0(data_dir, "/", folders[cell], "/", "study_cell.Rdata"))
   for (reps in 1 : 5){
