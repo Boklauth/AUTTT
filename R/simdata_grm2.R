@@ -160,6 +160,10 @@ simdata_grm2 <- function(model,
   # sample size
     N <- nrow(theta_matrix)
 
+  # thresholds (for passing to mplus_montecarlo_analysis())
+    loadings <- a/sqrt(1+a^2)
+    thresholds_mat <- d*sqrt(1-loadings^2)
+    thresholds <- thresholds_mat[1,]
 
   # arrange item discrimination in a p x m form,
   # p = max n. of items, m max n. of factors

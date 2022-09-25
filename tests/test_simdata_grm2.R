@@ -139,26 +139,17 @@ for (theta_index in 1:6){ # theta distributions
         # 2-Simulate raw data and scripts####
         ## 2.1 Generate raw data: using the function ####
         message(paste0("Creating ", nReps, " data sets for the condition."))
-        study_cell <- simdata_grm2(model = model,
-                                  theta_matrix = theta_val,
-                                  a = a_vec,
-                                  d = d,
-                                  R = nReps,
-                                  method = "U",
-                                  file_dir = getwd(),
-                                  file_prefix = "bk",
-                                  seed_num = 12345)
 
-        # study_cell <- simdata_grm(model = model,
-        #                            theta_matrix = theta_val,
-        #                            a = a_vec,
-        #                            d = d,
-        #                            N = NULL,
-        #                            R = nReps,
-        #                            method = "U",
-        #                            file_dir = getwd(),
-        #                            file_prefix = "bk",
-        #                            seed_num = 12345)
+      study_cell <- simdata_grm(model = model,
+                                 theta_matrix = theta_val,
+                                 a = a_vec,
+                                 d = d,
+                                 N = NULL,
+                                 R = nReps,
+                                 method = "U",
+                                 file_dir = getwd(),
+                                 file_prefix = "bk",
+                                 seed_num = 12345)
 
         # 2.2 Save model results
         message(paste0("Saving data model at: ", getwd()))
