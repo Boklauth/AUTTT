@@ -292,17 +292,21 @@ write.table(rep_list3,
             paste0(file_dir, "/", file_prefix, "_dsrep_theta.csv"),
             row.names = FALSE)
 
+
   return(list(model_spec = list(model = model,
                                 theta_matrix = theta_matrix,
+                                thresholds = thresholds,
+                                vfactor.cor = vfactor.cor,
+                                vloadings = vloadings,
                                 N = N,
                                 R = R,
                                 file_dir = file_dir,
-                                file_prefix = file_prefix),
+                                file_prefix = file_prefix,
+                                naming_data_files = naming_data_files),
               pop_a = a_jf,
               pop_d = d,
               res_prob = res_prob_tb_BR2,
               avg_res_prob = avg_res_prob)
-         )
-
+  )
 } # END FUNCTION
 
