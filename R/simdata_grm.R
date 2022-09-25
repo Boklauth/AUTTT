@@ -150,7 +150,8 @@ simdata_grm <- function(model,
                         R,
                         method,
                         file_dir,
-                        file_prefix
+                        file_prefix,
+                        seed_num
                         ){
 
   # declare global parameters ####
@@ -195,7 +196,7 @@ simdata_grm <- function(model,
   }
 
   for (r in 1:R){
-
+    set.seed(seed_num + r)
     # data set using probability
     # if (sim_methods=="grm2" | sim_methods=="all"){
       cat_grm2 <- matrix(rep(0, N*nvar), nrow=N, ncol=nvar)
