@@ -52,7 +52,7 @@ if(!dir.exists(dest_main_dir)){
 
 est_folder <- output_folder
 
-for(i in 1:length(folders)){
+for(i in cell_num){
   source_subdir <- paste0(source_main_dir, "/", folders[i], "/", est_folder)
   message(paste0("Source directory: ", source_subdir))
 
