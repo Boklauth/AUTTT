@@ -13,7 +13,8 @@ simdata_grm(
   R,
   method,
   file_dir,
-  file_prefix
+  file_prefix,
+  seed_num
 )
 }
 \arguments{

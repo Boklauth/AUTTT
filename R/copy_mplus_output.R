@@ -11,6 +11,8 @@
 #' including data files, are located. This main directory is to be copied.
 #' @param dest_main_dir It is a main destination directory, where the study
 #' condition folders, including data files, will be located.
+#' @cell_num The cell numbers in order of the "folders.Rdata" object, and it must
+#' be in a numeric list; e.g., c(1, 3, 5) or c(1:24).
 #' @param output_folder This is the folder where the output files
 #' (".out", ".dat") are stored. The folder represents an estimator.
 #'
@@ -30,6 +32,7 @@
 
 copy_mplus_output <- function(source_main_dir,
                               dest_main_dir,
+                              cell_num,
                               output_folder){
   # load folders
   load(paste0(source_main_dir, "/folders.Rdata"))
@@ -39,7 +42,7 @@ if(!dir.exists(dest_main_dir)){
 }
 
   # create dest. condition folders conditional on existence of source condition folders
-    for (i in 1:length(folders)){
+    for (i in cell_num){
       if(dir.exists(paste0(source_main_dir, "/", folders[i])) & !dir.exists(paste0(dest_main_dir, "/", folders[i]))){
         dir.create(paste0(dest_main_dir, "/", folders[i]))
       }
