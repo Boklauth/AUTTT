@@ -11,7 +11,7 @@
 #' including data files, are located. This main directory is to be copied.
 #' @param dest_main_dir It is a main destination directory, where the study
 #' condition folders, including data files, will be located.
-#' @cell_num The cell numbers in order of the "folders.Rdata" object, and it must
+#' @param cell_num The cell numbers in order of the "folders.Rdata" object, and it must
 #' be in a numeric list; e.g., c(1, 3, 5) or c(1:24).
 #' @param output_folder This is the folder where the output files
 #' (".out", ".dat") are stored. The folder represents an estimator.
