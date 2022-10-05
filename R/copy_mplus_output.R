@@ -27,6 +27,7 @@
 #'
 #' copy_mplus_output(source_main_dir = "C:/Users/shh6304/Desktop/test3",
 #'                  dest_main_dir = "C:/Users/shh6304/OneDrive - Western Michigan University/test3",
+#'                  cell_num = c(1,3,5),
 #'                  output_folder = "ML_probit")
 
 
