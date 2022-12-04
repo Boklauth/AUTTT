@@ -52,7 +52,7 @@ execute_mplus_scripts <- function(main_dir,
     print(paste0("time1: ", time1))
 
     # run mplus files
-    runModels(target=paste0(main_dir2, "/", folders[i], "/", est_folders))
+    runModels(target=paste0(main_dir, "/", folders[i], "/", est_folders))
 
     # message and meta data
     message(paste0("Finished analzying condition: ", folders[i]))
