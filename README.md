@@ -1,12 +1,17 @@
 # AUTTT
 
+> **Development has moved to [simPsyStudy](https://github.com/Boklauth/simPsyStudy).**
+> AUTTT is no longer actively updated. Continued development of simulation-study
+> design, ordinal response generation, and SEM/IRT analysis workflows takes place
+> in simPsyStudy. This repository remains available for reference.
+
 **A Unified Treatment in Test Theory**
 
 AUTTT provides tools for simulating ordinal item responses for test-theory research. It includes utilities for factor analysis with ordinal variables (FAOV), graded response models (GRM), and Mplus simulation workflows.
 
 The multiple-condition interface lets you define named sets of theta values, loadings, and thresholds, then generate every combination with separate output folders and recorded seeds.
 
-> **Development status:** This README describes the local development version, 1.1.6.9000. The new `simulate_condition()` interface is being tested for inclusion in a future release and is not yet available on the GitHub main branch. CRAN preparation is in progress.
+> **About this guide:** The examples below describe AUTTT's final local development work. The new `simulate_condition()` interface is published in simPsyStudy, not AUTTT's GitHub main branch. For current installation instructions and examples, use the [simPsyStudy README](https://github.com/Boklauth/simPsyStudy#readme). CRAN preparation continues there.
 
 ## Installation
 
