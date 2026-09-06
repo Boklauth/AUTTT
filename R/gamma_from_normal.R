@@ -78,7 +78,7 @@ gamma_from_normal <- function(shape, rate, mean_vec, cov_matrix, size, c,seed_nu
       Y <- MultiRNG::draw.d.variate.normal(no.row = 1,
                                            d = n_dim,
                                            mean.vec = mean_vec,
-                                           cov.mat = my_covmat_input)
+                                           cov.mat = cov_matrix)
       
       if (dgamma(Y[1], shape = shape, rate = rate)/(dnorm(Y[1])*c) > U &
           dgamma(Y[2], shape = shape, rate = rate)/(dnorm(Y[2])*c) > U &
